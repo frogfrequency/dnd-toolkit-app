@@ -1,2 +1,2 @@
-# dnd-toolkit-app
-dnd toolkit-app written in angular with epress backend
+# D&D toolkit app
+Dungeons & Dragons toolkit app written using Angular and Express JS.
