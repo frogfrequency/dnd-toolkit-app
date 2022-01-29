@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MonsterService } from 'src/app/services/monster.service';
 
 @Component({
 	selector: 'app-header',
@@ -8,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 	title: string = 'dnd-toolkit-app-frontend';
 
-	constructor() { }
+	constructor(private monsterService: MonsterService) {}
 
 	ngOnInit(): void {
 	}
 
 	doIt() {
 		console.log('method of Header called');
+	}
+
+	giveRandomMonster(): void {
+		 
+		this.monsterService.getRandomMonster().subscribe((monster) => console.log(monster));
 	}
 
 }
