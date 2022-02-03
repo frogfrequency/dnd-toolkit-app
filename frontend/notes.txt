@@ -1,0 +1,15 @@
+technologies used:
+
+frontend:
+
+scss
+angular
+angular material
+
+backend:
+
+nodejs
+express
+
+
+

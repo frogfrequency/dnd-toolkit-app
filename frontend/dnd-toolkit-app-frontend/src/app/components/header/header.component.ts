@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
 	}
 
 	giveRandomMonster(): void {
-		 
 		this.monsterService.getRandomMonster().subscribe((monster) => console.log(monster));
 	}
 

@@ -10,12 +10,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class MonsterService {
 
-	private backEndUrl = 'http://localhost:3000/api/monsters/skeleton';
+	private backendUrl = 'http://localhost:3000/api/monsters/skeleton';
 
 	constructor(private http: HttpClient) { }
 
 	getRandomMonster(): Observable<IMonster> {
-		let oneMonster = this.http.get<IMonster>(this.backEndUrl) 
+		let oneMonster = this.http.get<IMonster>(this.backendUrl) 
 		// const output = of('hello from getRandomMonsterService');
 		return oneMonster
 	}
