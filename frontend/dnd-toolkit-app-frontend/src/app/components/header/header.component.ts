@@ -8,6 +8,7 @@ import { MonsterService } from 'src/app/services/monster.service';
 })
 export class HeaderComponent implements OnInit {
 	title: string = 'dnd-toolkit-app-frontend';
+	backgroundImage: string = '../../../assets/images/rainy-muddy-ruin-dark.png';
 
 	constructor(private monsterService: MonsterService) {}
 

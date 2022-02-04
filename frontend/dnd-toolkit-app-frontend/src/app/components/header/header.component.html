@@ -1,10 +1,25 @@
-<div class="container">
-    <h2>{{title}}</h2>
-    <mat-tab-group>
-        <mat-tab label="First">
-            <button mat-raised-button color="primary" (click)="giveRandomMonster()">click me</button>
+<div id="header-container">
+
+    <mat-tab-group mat-align-tabs="center">
+
+        <mat-tab label="Monsters">
+            <app-monsters></app-monsters>
+            <!-- Monster Module here  -->
+
         </mat-tab>
-        <mat-tab label="Second"> Content 2 </mat-tab>
-        <mat-tab label="Third"> Content 3 </mat-tab>
+        <mat-tab label="Spells">
+            <!-- Spellz Module Here -->
+
+        </mat-tab>
+        <mat-tab label="Races & Classes">
+            <!-- Races & classes Module Here -->
+
+        </mat-tab>
+        <mat-tab label="Equipment">
+            <!-- Equipment Module here -->
+
+        </mat-tab> 
+        
     </mat-tab-group>
+
 </div>
