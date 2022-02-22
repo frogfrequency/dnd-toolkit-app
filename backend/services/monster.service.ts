@@ -26,9 +26,12 @@ export const fetchAllMonsters = async (): Promise<IMonster[]> => {
 }
 
 export const fetchMonsterByName = async (name: string): Promise<IMonster> => {
-    const apiResponse = await axios.get(monsterApiBaseURL + name);
+    const apiResponse = await axios.get(monsterApiBaseURL + name)
+    // .catch((error) => {
+    //     console.log(error);
+    // });
     const monsterResponse: IMonster = apiResponse.data;
-    return monsterResponse;
+    return monsterResponse; 
 }
 
 export const fetchAllMonstersPageOne = async (): Promise<IMonster[]> => {

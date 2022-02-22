@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MonstersComponent } from './monsters.component';
 
-// import { SideNavComponent } from '../../components/side-nav/side-nav.component';
-
+import { CommonModuleModule } from '../../common-module/common-module.module'
 
 
 
@@ -12,7 +11,8 @@ import { MonstersComponent } from './monsters.component';
 		MonstersComponent
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		CommonModuleModule
 	],
 	exports: [
 		MonstersComponent

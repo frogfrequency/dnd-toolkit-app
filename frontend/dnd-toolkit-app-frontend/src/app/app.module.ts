@@ -11,18 +11,19 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 // own components import
 import { AppComponent } from './app.component';
 
 import { MonstersModule } from './feature-modules/monsters/monsters.module'
+import { CommonModuleModule } from './common-module/common-module.module';
 
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { MatListModule } from '@angular/material/list';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    // material below this --> maybe create separate file with material imports
     MonstersModule,
+    CommonModuleModule,
+    // material below this --> maybe create separate file with material imports
     MatButtonModule,
     MatTabsModule,
     MatSidenavModule,

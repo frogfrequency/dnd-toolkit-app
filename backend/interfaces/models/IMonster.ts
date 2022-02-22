@@ -1,3 +1,4 @@
+
 export interface IMonster {
     slug: string;
     name: string;
