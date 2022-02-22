@@ -30,7 +30,7 @@ monsterRouter.get('/filter', async (req: Request, res: Response) => {
 monsterRouter.get('/:name', async (req: Request, res: Response) => {
     console.log('/:name called');
     const monsterName: string = req.params.name;
-    const monster: IMonster = await monsterService.fetchMonsterByName(monsterName);
+    const monster: IMonster | number = await monsterService.fetchMonsterByName(monsterName);
     
     res.json(monster);
 });

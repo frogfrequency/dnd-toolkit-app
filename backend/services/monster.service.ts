@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { type } from 'os';
 import { IAllMonstersApiResponse, IMonster } from '../interfaces/models/IMonster'
 
 const monsterApiBaseURL = 'https://api.open5e.com/monsters/'
@@ -13,25 +14,30 @@ export const fetchAllMonsters = async (): Promise<IMonster[]> => {
         allMonsters.push(monster)
     })
 
-    while(next) {
-            apiResponse = await axios.get(next);
-            allMonstersResponse = apiResponse.data;
-            allMonstersResponse.results.forEach(monster => {
-                allMonsters.push(monster)
-            })
-            next = allMonstersResponse.next
-        }
+    while (next) {
+        apiResponse = await axios.get(next);
+        allMonstersResponse = apiResponse.data;
+        allMonstersResponse.results.forEach(monster => {
+            allMonsters.push(monster)
+        })
+        next = allMonstersResponse.next
+    }
 
     return allMonsters;
 }
 
-export const fetchMonsterByName = async (name: string): Promise<IMonster> => {
+export const fetchMonsterByName = async (name: string): Promise<IMonster | number> => {
+    console.log('before');
+
     const apiResponse = await axios.get(monsterApiBaseURL + name)
-    // .catch((error) => {
-    //     console.log(error);
-    // });
-    const monsterResponse: IMonster = apiResponse.data;
-    return monsterResponse; 
+        .catch(error => { return error.response.status });
+    
+    if (typeof(apiResponse) === 'number') {
+        return apiResponse
+    } else {
+        const monsterResponse: IMonster = apiResponse.data;
+        return monsterResponse;
+    }
 }
 
 export const fetchAllMonstersPageOne = async (): Promise<IMonster[]> => {
@@ -44,7 +50,7 @@ export const fetchAllMonstersWithSpecificFilter = async (filterProperty: string,
     const allMonsters: IMonster[] = await fetchAllMonsters();
     let allMonstersWithFilterApplied: IMonster[] = [];
     allMonsters.forEach(monster => {
-        let propertyType: string = typeof(monster[filterProperty as keyof IMonster]);
+        let propertyType: string = typeof (monster[filterProperty as keyof IMonster]);
 
         if (propertyType === 'string') {
             if (monster[filterProperty as keyof IMonster] === filterValue) {
