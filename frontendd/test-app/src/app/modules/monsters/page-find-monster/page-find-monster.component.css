@@ -1,0 +1,9 @@
+.input-field {
+    border: 1px solid rgba(255,255,255,.2);
+    width: 300px;
+    padding: 16px;
+}
+
+.error-message {
+    margin: 16px 16px;
+}

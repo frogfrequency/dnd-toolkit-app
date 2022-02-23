@@ -1,0 +1,25 @@
+<div class="input-field">
+    <mat-form-field appearance="fill">
+        <mat-label>{{searchFieldParams.searchInputFieldTitle}}</mat-label>
+        <input matInput #searchString placeholder="{{searchFieldParams.placeholder}}"
+            value="{{searchFieldParams.value}}" (input)="inputChanged(searchString.value)">
+
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="searchClick(searchString.value)">Search</button>
+    <!-- to apply to best practises this button/input/form-thingy should be changed to submit and the value extracted correctly..  -->
+</div>
+
+<!-- <mat-list *ngFor="let entry of searchEntries"  role="list">
+    <mat-list-item role="listitem">{{entry}}</mat-list-item>
+</mat-list> -->
+
+<mat-list *ngFor="let entry of matchingSearchEntries.slice(0, 15);" role="list">
+    <mat-list-item role="listitem">{{entry}}</mat-list-item>
+</mat-list>
+
+<mat-list role="list" *ngIf="15 < matchingSearchEntries.length">
+    <mat-list-item role="listitem">...</mat-list-item>
+</mat-list>
+
+<!-- <p class="mat-subheading-2">here {{searchEntries[1]}}</p> -->
