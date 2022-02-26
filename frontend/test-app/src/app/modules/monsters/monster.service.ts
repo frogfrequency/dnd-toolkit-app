@@ -5,16 +5,18 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { IMonster } from 'src/app/interfaces/IMonster';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class MonsterService {
 
-  private backendUrl = 'http://localhost:3000/api/monsters';
 
-	constructor(private http: HttpClient) { }
+	private backendUrl = 'http://localhost:3000/api/monsters';
+
+	constructor(private http: HttpClient) {  }
 
 	getMonsterByName(searchString: string): Observable<IMonster> {
 		let Url = `${this.backendUrl}/${searchString}`

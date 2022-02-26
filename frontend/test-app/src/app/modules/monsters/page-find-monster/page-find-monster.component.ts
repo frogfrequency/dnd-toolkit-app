@@ -11,9 +11,10 @@ import { MonsterService } from '../monster.service';
 })
 export class PageFindMonsterComponent implements OnInit {
 
-  @ Input() allMonsters: any[] = []; // change to IMonster[] ?
+  @ Input() allMonsters: IMonster[] = [];
 
   searchEntries: string[] = [];
+  searchEntriesLUT: any = {};
 
   searchFieldParams: INameSearchParams = {
     searchFieldMainTitle: "search Monsters by Name",
@@ -100,8 +101,10 @@ export class PageFindMonsterComponent implements OnInit {
   }
 
   extractAndSetSearchEntries():void {
+    console.log('this function is called')
     this.allMonsters.forEach( monster => {
       this.searchEntries.push(monster.name)
+      this.searchEntriesLUT[`${monster.name}`] = `${monster.slug}`;
     })
   }
 
@@ -110,9 +113,10 @@ export class PageFindMonsterComponent implements OnInit {
   }
 
   startSearch(searchString: string): void {
-    searchString = searchString.trim();
+    searchString = searchString.trim(); 
+
     if (searchString.length) {
-      this.monsterService.getMonsterByName(searchString).subscribe((monster) => {
+      this.monsterService.getMonsterByName(this.searchEntriesLUT[searchString]).subscribe((monster) => {
         console.log(monster);
         if (typeof(monster) === 'number') {
           this.errorCode = monster;

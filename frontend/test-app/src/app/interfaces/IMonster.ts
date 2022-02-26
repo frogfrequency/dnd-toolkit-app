@@ -4,7 +4,7 @@ export interface IMonster {
     size: string;
     type: string;
     subtype: string;
-    group: string;
+    group: string | null;
     alignment: string;
     armor_class: number;
     armor_desc: string;
@@ -33,10 +33,10 @@ export interface IMonster {
     languages: string;
     challenge_rating: string;
     actions: IAction[];
-    reactions: string;
+    reactions: string | IReactions[];
     legendary_desc: string;
-    legendary_actions: string | ILegendaryAction;
-    special_abilities: string;
+    legendary_actions: string | ILegendaryAction[];
+    special_abilities: string | ISpecialAbility[];
     spell_list: string[];
     img_main: string | null;
     document__slug: string;
@@ -54,25 +54,26 @@ export interface IAction {
 
 // removed sleight of hand & animal handling (because no monster has these)
 export interface ISkills {
-    athletics?: string;
-    acrobatics?: string;
-    stealth?: string;
-    arcana?: string;
-    history?: string;
-    investigation?: string;
-    nature?: string;
-    religion?: string;
-    insight?: string;
-    medicine?: string;
-    perception?: string;
-    survival?: string;
-    deception?: string;
-    intimidation?: string;
-    performance?: string;
-    persuasion?: string;
+    athletics?: string |number;
+    acrobatics?: string |number;
+    stealth?: string |number;
+    arcana?: string |number;
+    history?: string |number;
+    investigation?: string |number;
+    nature?: string |number;
+    religion?: string |number;
+    insight?: string |number;
+    medicine?: string |number;
+    perception?: string |number;
+    survival?: string |number;
+    deception?: string |number;
+    intimidation?: string |number;
+    performance?: string |number;
+    persuasion?: string |number;
 }
 
 export interface ISpeed {
+    hover?: boolean; 
     walk?: number;
     burrow?: number;
     climb?: number;
@@ -80,7 +81,17 @@ export interface ISpeed {
     swim?: number;
 }
 
+export interface IReactions {
+    name: string;
+    desc: string;
+}
+
 export interface ILegendaryAction {
+    name: string;
+    desc: string;
+}
+
+export interface ISpecialAbility {
     name: string;
     desc: string;
 }

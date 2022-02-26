@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IMonster } from 'src/app/interfaces/IMonster';
 
 @Component({
   selector: 'app-page-random-monster',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageRandomMonsterComponent implements OnInit {
 
+  randomMonster!: IMonster;
+
+  @ Input() allMonsters: IMonster[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.setNewRandomMonster();
+  }
+
+  setNewRandomMonster():void {
+    let newRandomIdx = Math.floor(Math.random()*this.allMonsters.length);
+    this.randomMonster = this.allMonsters[newRandomIdx];
   }
 
 }

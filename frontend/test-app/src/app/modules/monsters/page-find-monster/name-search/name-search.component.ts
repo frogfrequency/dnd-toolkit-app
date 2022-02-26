@@ -13,6 +13,8 @@ export class NameSearchComponent implements OnInit {
 
   matchingSearchEntries: string[] = [];
 
+  clickedSearchEntry: string = '';
+
   @Input() searchFieldParams!: INameSearchParams;
 
   @Input() searchFunction!: (args: any) => void;
@@ -23,19 +25,28 @@ export class NameSearchComponent implements OnInit {
   }
 
   inputChanged(newString: string): void {
-    
+  
+    if (2 <= newString.length) {
       let matching: string[] = [];
       newString = newString.toLowerCase();
       this.searchEntries.forEach(element => {
-          if (element.toLowerCase().includes(newString)) {
-              matching.push(element);
-          }
+        if (element.toLowerCase().includes(newString)) {
+          matching.push(element);
+        }
       });
       this.matchingSearchEntries = [...matching]
+    } else {
+      this.matchingSearchEntries = [];
+    }
+  }
+
+  setClickedSearchEntry(clickedSearchEntry: string): void {
+    this.clickedSearchEntry = clickedSearchEntry;
+    this.searchClick(clickedSearchEntry);
   }
 
   searchClick(searchString: string): void {
+    this.matchingSearchEntries = [];
     this.searchFunction(searchString);
   }
-
 }

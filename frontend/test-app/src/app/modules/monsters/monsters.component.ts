@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IMonster } from 'src/app/interfaces/IMonster';
 import { MonsterService } from './monster.service';
 
+import { mockMonsters } from './mockMonsters';
+
 
 @Component({
   selector: 'app-monsters',
@@ -18,22 +20,18 @@ export class MonstersComponent implements OnInit {
     { selector: 'randomMonster', label: 'random monster' }
   ];
 
-  activeMonsterPage: string = 'findMonster';
+  activeMonsterPage: string = 'randomMonster';
 
   allMonsters: IMonster[] = [];
 
-  allMockMonsters: { name: string, intelligence: number }[] = [
-    {name: 'bandit',intelligence: 12},
-    {name: 'skeleton',intelligence: 4},
-    {name: 'dragon',intelligence: 20}
-  ]
-  // testString: string = '<app-page-explore-monsters></app-page-explore-monsters>'
+  finishedFetchingAllMonsters: boolean = true; // this must be false
 
   constructor(private monsterService: MonsterService) { }
 
   ngOnInit(): void {
     console.log(`monster.component.ts's ogOnInit() called`)
     // this.getAllMonsters();
+    this.allMonsters = mockMonsters;
   }
 
   setActivePage(element: string) {
@@ -43,6 +41,7 @@ export class MonstersComponent implements OnInit {
   getAllMonsters() {
     this.monsterService.getAllMonsters().subscribe((allMonsters) => {
       this.allMonsters = allMonsters;
+      this.finishedFetchingAllMonsters = true;
     })
   }
 

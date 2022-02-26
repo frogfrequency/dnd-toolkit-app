@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IMonster } from 'src/app/interfaces/IMonster';
+import { FavoritesService } from '../favorites.service';
 
 @Component({
   selector: 'app-page-favorites',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageFavoritesComponent implements OnInit {
 
-  constructor() { }
+  favoritedMonsters!: IMonster[];
+
+  constructor(private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
+    this.favoritesService.favoritedMonstersSubject.subscribe(favorites => {
+      this.favoritedMonsters = favorites;
+    });
+
   }
 
 }

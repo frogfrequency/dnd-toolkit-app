@@ -2,7 +2,7 @@
     <mat-form-field appearance="fill">
         <mat-label>{{searchFieldParams.searchInputFieldTitle}}</mat-label>
         <input matInput #searchString placeholder="{{searchFieldParams.placeholder}}"
-            value="{{searchFieldParams.value}}" (input)="inputChanged(searchString.value)">
+            value="{{clickedSearchEntry}}" (input)="inputChanged(searchString.value)">
 
     </mat-form-field>
     <br>
@@ -14,12 +14,19 @@
     <mat-list-item role="listitem">{{entry}}</mat-list-item>
 </mat-list> -->
 
-<mat-list *ngFor="let entry of matchingSearchEntries.slice(0, 15);" role="list">
-    <mat-list-item role="listitem">{{entry}}</mat-list-item>
-</mat-list>
+<mat-selection-list [multiple]="false" *ngFor="let entry of matchingSearchEntries.slice(0, 15);" role="list">
+    <mat-list-option role="listitem"><a (click)="setClickedSearchEntry(entry)">{{entry}}</a></mat-list-option>
+</mat-selection-list>
+
+<!-- <mat-selection-list role="list" [multiple]="false">
+    <mat-list-option role="listitem"><a>looking good</a></mat-list-option>
+</mat-selection-list> -->
+
+
+
 
 <mat-list role="list" *ngIf="15 < matchingSearchEntries.length">
-    <mat-list-item role="listitem">...</mat-list-item>
+    <mat-list-item role="listitem">...and {{matchingSearchEntries.length-15}} more</mat-list-item>
 </mat-list>
 
 <!-- <p class="mat-subheading-2">here {{searchEntries[1]}}</p> -->

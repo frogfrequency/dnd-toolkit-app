@@ -1,1 +1,6 @@
 <p>page-favorites works!</p>
+
+<p>count in service: {{favoritedMonsters.length}}</p>
+<!-- <app-monster-card *ngFor="let monster of favorites"></app-monster-card> -->
+
+<app-monster-card *ngFor="let monster of favoritedMonsters" [monster]="monster"></app-monster-card>

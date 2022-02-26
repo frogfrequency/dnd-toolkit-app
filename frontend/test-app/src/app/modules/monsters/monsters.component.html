@@ -15,23 +15,26 @@
         </mat-nav-list>
 
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content *ngIf="finishedFetchingAllMonsters">
         
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-        <br>
-        <p>length of all allMockMonstersElement: {{allMockMonsters.length}}</p>
-        <br>
 
         <!-- <h1 [style.background-color]="'blue'">hello</h1> -->
         
         <!-- <app-page-find-monster *ngIf="activeMonsterPage === 'findMonster'"></app-page-find-monster> -->
 
         <!-- using hidden so the components dont lose their state.. if ngif was used they would be re-initialised everytime you come back to them -->
-        <app-page-find-monster [hidden]="activeMonsterPage !== 'findMonster'" [allMonsters]="allMockMonsters"></app-page-find-monster>
+        <app-page-find-monster [hidden]="activeMonsterPage !== 'findMonster'" [allMonsters]="allMonsters"></app-page-find-monster>
         <app-page-explore-monsters [hidden]="activeMonsterPage !== 'exploreMonsters'"></app-page-explore-monsters>
         <app-page-favorites [hidden]="activeMonsterPage !== 'favorites'"></app-page-favorites>
-        <app-page-random-monster [hidden]="activeMonsterPage !== 'randomMonster'"></app-page-random-monster>
+        <app-page-random-monster [hidden]="activeMonsterPage !== 'randomMonster'" [allMonsters]="allMonsters"></app-page-random-monster>
 
     </mat-sidenav-content>
+
+    <div class="summon-spinner" *ngIf="!finishedFetchingAllMonsters">
+
+        <mat-spinner></mat-spinner>
+        <div  class="mat-subheading-2">Summonig all the monsters!</div>
+    </div>
 
 </mat-sidenav-container>

@@ -3,3 +3,4 @@
 <app-monster-card *ngIf="searchResult && !errorCode" [monster]="searchResult"></app-monster-card>
 
 <div class="mat-subheading-2 error-message" *ngIf="errorCode" [ngStyle]="{color: 'red'}">Oops.. this search got a response with statuscode: {{errorCode}}</div>
+
