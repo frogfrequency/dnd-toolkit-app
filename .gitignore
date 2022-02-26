@@ -174,8 +174,7 @@ baseline.json
 
 /concept-art-pictures
 
-.angular/cache/
-
+*angular/cache/
 
 test-folder-12345/
 
