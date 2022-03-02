@@ -8,7 +8,7 @@
         <!-- simply add openend after mode="push" to have id open by default  -->
         <mat-nav-list>
 
-            <mat-list-item *ngFor="let element of sidenavElements" (click)="setActivePage(element.selector)">
+            <mat-list-item *ngFor="let element of sidenavElements" (click)="setActivePage(element.selector); sidenav.close()">
                 {{element.label}}
             </mat-list-item>
 
@@ -28,9 +28,11 @@
         <app-page-explore-monsters [hidden]="activeMonsterPage !== 'exploreMonsters'"></app-page-explore-monsters>
         <app-page-favorites [hidden]="activeMonsterPage !== 'favorites'"></app-page-favorites>
         <app-page-random-monster [hidden]="activeMonsterPage !== 'randomMonster'" [allMonsters]="allMonsters"></app-page-random-monster>
+        <app-encounter-creator [hidden]="activeMonsterPage !== 'encounterCreator'"></app-encounter-creator>
+
 
     </mat-sidenav-content>
-
+ 
     <div class="summon-spinner" *ngIf="!finishedFetchingAllMonsters">
 
         <mat-spinner></mat-spinner>

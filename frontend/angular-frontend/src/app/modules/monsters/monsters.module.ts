@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 import { MonstersComponent } from './monsters.component';
 import { MonsterCardComponent } from './monster-card/monster-card.component';
@@ -18,7 +19,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { DetailViewComponent } from './detail-view/detail-view.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { SimpleStatComponent } from './detail-view/simple-stat/simple-stat.component';
+import { AbilityScoresComponent } from './detail-view/ability-scores/ability-scores.component';
+import { MonsterListViewComponent } from './monster-list-view/monster-list-view.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { EncounterCreatorComponent } from './encounter-creator/encounter-creator.component';
 
 
 @NgModule({
@@ -30,16 +37,24 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PageFavoritesComponent,
     PageRandomMonsterComponent,
     NameSearchComponent,
+    DetailViewComponent,
+    SimpleStatComponent,
+    AbilityScoresComponent,
+    MonsterListViewComponent,
+    EncounterCreatorComponent,
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatButtonToggleModule
   ],
   exports: [
     MonstersComponent,

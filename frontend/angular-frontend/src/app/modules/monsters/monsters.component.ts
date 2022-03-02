@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { MonsterService } from './monster.service';
+import { MonsterService } from './services/monster.service';
 
 import { mockMonsters } from './mockMonsters';
 
@@ -17,10 +17,11 @@ export class MonstersComponent implements OnInit {
     { selector: 'findMonster', label: 'Find Monster' },
     { selector: 'exploreMonsters', label: 'Explore Monsters' },
     { selector: 'favorites', label: 'Favorites' },
-    { selector: 'randomMonster', label: 'random monster' }
+    { selector: 'randomMonster', label: 'Random Monster' },
+    { selector: 'encounterCreator', label: 'Encounter Creator'}
   ];
 
-  activeMonsterPage: string = 'randomMonster';
+  activeMonsterPage: string = 'favorites';
 
   allMonsters: IMonster[] = [];
 
@@ -30,8 +31,8 @@ export class MonstersComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(`monster.component.ts's ogOnInit() called`)
-    // this.getAllMonsters();
-    this.allMonsters = mockMonsters;
+    // this.getAllMonsters(); // change these to work with either the mock monsters or to fetch all Monsters onInit. dont forget to change finishedFetchingAllMonsters
+    this.allMonsters = mockMonsters; // change these to work with either the mock monsters or to fetch all Monsters onInit. dont forget to change finishedFetchingAllMonsters
   }
 
   setActivePage(element: string) {

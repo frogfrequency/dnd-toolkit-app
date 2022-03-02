@@ -1,0 +1,17 @@
+.simple-stat {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0px;
+    text-align: justify;
+}
+
+.stat-name {
+    /* font-size: 14px; */
+    font-weight: 500;
+    margin-right: 8px;
+    /* width: max-content; */
+}
+
+.stat-value {
+    font-weight: 300;
+}

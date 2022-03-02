@@ -1,0 +1,107 @@
+<div class="detail-view-container">
+
+    <div *ngIf="errorDetected">status / error code: {{statusCode}}</div>
+
+    <div *ngIf="monster" class="detail-container">
+        <button mat-raised-button (click)="goBack()">GO BACK</button>
+
+        <button mat-raised-button *ngIf="!monsterIsFavorited" (click)="onFavoriteButtonClick()">FAVORITE</button>
+        <button mat-raised-button *ngIf="monsterIsFavorited" (click)="onUnfavoriteButtonClick()">UNFAVORITE</button>
+
+        <div class="mat-display-2">{{monster.name}}</div>
+
+        <div class="italic-subheader">
+            <div class="mat-body italic">{{monster.type}}</div>
+            <div class="mat-body horizontal-divider">|</div>
+            <div class="mat-body italic">{{monster.alignment}}</div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <app-simple-stat [statName]="'Armor Class'" [statValue]="monster.armor_class"></app-simple-stat>
+        <app-simple-stat [statName]="'Hit Points'" [statValue]="monster.hit_points "></app-simple-stat>
+        <app-simple-stat [statName]="'Speed'" [statValue]="speed"></app-simple-stat>
+
+        <mat-divider></mat-divider>
+
+        <app-ability-scores [scores]="abilityScores"></app-ability-scores>
+
+        <mat-divider></mat-divider>
+
+        <div *ngIf="this.skills !== ''">
+            <app-simple-stat [statName]="'Skills'" [statValue]="skills"></app-simple-stat>
+        </div>
+
+
+        <div *ngIf="monster.damage_resistances !== ''">
+            <app-simple-stat [statName]="'Damage Resistance'" [statValue]="monster.damage_resistances">
+            </app-simple-stat>
+        </div>
+
+        <div *ngIf="monster.damage_immunities !== ''">
+            <app-simple-stat [statName]="'Damage Immunities'" [statValue]="monster.damage_immunities"></app-simple-stat>
+        </div>
+
+        <div *ngIf="monster.condition_immunities !== ''">
+            <app-simple-stat [statName]="'Condition Immunities'" [statValue]="monster.condition_immunities">
+            </app-simple-stat>
+        </div>
+
+        <app-simple-stat [statName]="'Senses'" [statValue]="monster.senses"></app-simple-stat>
+
+        <app-simple-stat [statName]="'Languages'" [statValue]="monster.languages"></app-simple-stat>
+
+        <app-simple-stat [statName]="'Challenge Rating'" [statValue]="challengeRating"></app-simple-stat>
+
+        <div *ngIf="0 < specialAbilities.length">
+            <mat-divider></mat-divider>
+            <div class="mat-h1">Special Abilities</div>
+            <app-simple-stat *ngFor="let specAbility of specialAbilities" [statName]="specAbility[0]"
+                [statValue]="specAbility[1]"></app-simple-stat>
+        </div>
+
+        <div *ngIf="0 < actions.length">
+            <mat-divider></mat-divider>
+            <div class="mat-h1">Actions</div>
+            <app-simple-stat *ngFor="let action of actions" [statName]="action[0]" [statValue]="action[1]">
+            </app-simple-stat>
+        </div>
+
+        <div *ngIf="0 < reactions.length">
+            <mat-divider></mat-divider>
+            <div class="mat-h1">Reactions</div>
+            <app-simple-stat *ngFor="let reaction of reactions" [statName]="reaction[0]" [statValue]="reaction[1]">
+            </app-simple-stat>
+        </div>
+
+
+
+        <div *ngIf="0 < legendaryActions.length">
+            <mat-divider></mat-divider>
+            <div class="mat-h1">Legendary Actions</div>
+            <app-simple-stat *ngFor="let legAction of legendaryActions" [statName]="legAction[0]"
+                [statValue]="legAction[1]"></app-simple-stat>
+        </div>
+
+
+
+    </div>
+
+    <!-- 
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+    <div class="mat-display-2">mat-display-2</div>
+<div class="mat-display-1">mat-display-1</div>
+<div class="mat-h1">mat-h1</div>
+<div class="mat-h2">mat-h2</div>
+<div class="mat-h3">mat-h3</div>
+<div class="mat-h4">mat-h4</div>
+<div class="mat-h5">mat-h5</div>
+<div class="mat-h6">mat-h6</div>
+<div class="mat-body">mat-body</div>
+<div class="mat-body-strong">mat-body-strong</div>
+<div class="mat-small">mat-small</div> -->
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { FavoritesService } from '../favorites.service';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-page-favorites',
@@ -9,7 +9,9 @@ import { FavoritesService } from '../favorites.service';
 })
 export class PageFavoritesComponent implements OnInit {
 
-  favoritedMonsters!: IMonster[];
+  viewMode: string = 'list';
+
+  favoritedMonsters: IMonster[] = [];
 
   constructor(private favoritesService: FavoritesService) { }
 
@@ -17,7 +19,10 @@ export class PageFavoritesComponent implements OnInit {
     this.favoritesService.favoritedMonstersSubject.subscribe(favorites => {
       this.favoritedMonsters = favorites;
     });
+  }
 
+  setViewMode(mode: string): void {
+    this.viewMode = mode;
   }
 
 }

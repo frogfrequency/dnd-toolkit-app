@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IMonster } from 'src/app/interfaces/IMonster';
 import { INameSearchParams } from 'src/app/interfaces/INameSearchParams';
 
-import { MonsterService } from '../monster.service';
+import { MonsterService } from '../services/monster.service';
 
 @Component({
   selector: 'app-page-find-monster',

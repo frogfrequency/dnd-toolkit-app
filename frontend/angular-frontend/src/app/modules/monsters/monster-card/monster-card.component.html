@@ -50,7 +50,7 @@
 
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>DETAILS</button>
+        <button mat-button [routerLink]="monstersDetailsLink">DETAILS</button>
 
         <!-- either render favorite or unfavorite button depending on (*ngIf) if the monster.name is included in the favorites arr.... -->
         <button mat-button *ngIf="!monsterIsFavorited" (click)="onFavoriteButtonClick()">FAVORITE</button>
