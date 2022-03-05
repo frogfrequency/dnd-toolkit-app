@@ -1,0 +1,85 @@
+<button mat-raised-button class="back-to-overview-button" (click)="handleBackToOverClick()">BACK TO OVERVIEW</button>
+
+<!-- <div *ngIf="encounter" class="encounter-editor-container">{{encounter.name}} hello</div> -->
+
+<mat-card *ngIf="encounter" class="encounter-editor-container">
+    <mat-card-title>Encounter: {{encounter.name}}</mat-card-title>
+
+    <div class="views-container">
+
+        <!--  ===========  PARTY MEMEBERS  =========== -->
+
+        <div class="party-members-view mat-app-background">
+            <div class="squad-view-title-container">
+                <div class="squad-window-title-placeholder"></div>
+                <mat-card-title class="squad-window-title">Party Members</mat-card-title>
+                <button mat-raised-button (click)="openAddMemberDialog()">ADD</button>
+            </div>
+
+            <mat-card class="party-member-element" *ngFor="let member of encounter.partyMembers">
+
+                <div class="party-member-left-side">
+
+                    <button mat-button class="delete-button" (click)="removePartyMember(member.level)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                    <div class="party-member-text">
+                        Adventurer{{1 < member.quantity ? 's' : '' }} Level: {{member.level}} </div>
+
+                    </div>
+
+                    <div class="quantity-controller">
+                        <button mat-raised-button class="quantity-control-button"
+                            (click)="decreaseMemberQuantity(member.level)">-</button>
+                        <div class="quantity-display">{{member.quantity}}</div>
+                        <button mat-raised-button class="quantity-control-button"
+                            (click)="increaseMemberQuantity(member.level)">+</button>
+                    </div>
+            </mat-card>
+        </div>
+
+
+
+
+
+        <!--  ===========  MONSTERS  =========== -->
+
+        <div class="monsters-view mat-app-background">
+            <div class="squad-view-title-container">
+                <div class="squad-window-title-placeholder"></div>
+                <mat-card-title class="squad-window-title">Monsters</mat-card-title>
+                <button mat-raised-button>ADD</button>
+            </div>
+
+            <mat-card class="monster-element" *ngFor="let monster of encounter.monsters">
+
+                <div class="monster-left-side">
+                    <button mat-button class="delete-button" (click)="removeMonster(monster.name)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <div class="monster-rating-indicator">{{monster.rating}}</div>
+                    <div class="monster-text">{{monster.name}}{{1 < monster.quantity ? 's' : ''}}</div>
+                    </div>
+
+
+            </mat-card>
+
+        </div>
+
+
+    </div>
+
+
+
+
+</mat-card>
+
+
+
+
+
+
+
+<!-- this is not reallly needed!  i mean how could this error occur? -->
+<div *ngIf="!encounter"> error: encounter is not defined and can therefore not be rendered</div>

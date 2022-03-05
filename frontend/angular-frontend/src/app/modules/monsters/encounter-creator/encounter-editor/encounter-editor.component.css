@@ -1,0 +1,130 @@
+/* GENERAL STYLING */
+
+.encounter-editor-container {
+    max-width: 1200px;
+    min-width: 960px;
+    /* background-color: red; */
+}
+
+button {
+    margin: 16px;
+}
+
+.mat-card-title {
+    text-align: center;
+}
+
+.views-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* MONSTER- / PARTY-MEMBER-STYLING */
+
+.party-members-view {
+    width: 40%;
+    max-width: 480px;
+    min-height: 600px;
+    /* background-color: orange; */
+    margin: 16px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px -2px rgb(0, 0, 0);
+}
+    
+.monsters-view {
+    width: 60%;
+    max-width: 720px;
+    min-height: 600px;
+    /* background-color: blue; */
+    margin: 16px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px -2px rgb(0, 0, 0);
+}
+
+.squad-view-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.squad-window-title {
+    margin: 16px 0px;
+}
+
+.squad-window-title-placeholder {
+    width: 64px;
+}
+
+
+/* LIST-ELEMENTS */
+
+
+.party-member-element {
+    margin: 8px 16px;
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.monster-element {
+    margin: 8px 16px;
+    font-size: 18px;
+    font-weight: 400;
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+}
+
+.party-member-left-side {
+    display: flex;
+    align-items: center;
+    margin-left: -16px;
+}
+
+.monster-left-side {
+    display: flex;
+    align-items: center;
+    margin-left: -16px;
+}
+
+.monster-rating-indicator {
+    width: 56px;
+    text-align: center;
+    margin-left: -16px;
+    /* font-weight: 500; */
+    /* font-size: 24px; */
+    /* backgroundcolor: orange; */
+}
+
+
+/* QUANTITY-CONTROLLER */
+
+.quantity-controller {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.quantity-control-button {
+    min-width: 40px;
+    margin: 0px;
+}
+
+.quantity-display {
+    width: 48px;
+    text-align: center;
+}
+
+
+
+.delete-button {
+    min-width: 40px;
+    margin: 0px;
+    transform:scale(0.7);
+}

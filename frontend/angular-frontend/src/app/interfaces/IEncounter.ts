@@ -1,12 +1,12 @@
 export interface IEncounter {
     name: string;
     id: number;
+    imageURL: string;
     partyMembers: IEncounterMember[]; 
-    foes: IEncounterMonster[];
+    monsters: IEncounterMonster[];
 }
 
 export interface IEncounterMember {
-    name: string;
     level: number;
     quantity: number;
 }
@@ -15,5 +15,5 @@ export interface IEncounterMonster {
     slug: string;
     name: string;
     quantity: number;
-    rating: number;
+    rating: string;
 }

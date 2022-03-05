@@ -21,7 +21,7 @@ export class MonstersComponent implements OnInit {
     { selector: 'encounterCreator', label: 'Encounter Creator'}
   ];
 
-  activeMonsterPage: string = 'favorites';
+  activeMonsterPage: string = 'encounterCreator';
 
   allMonsters: IMonster[] = [];
 
