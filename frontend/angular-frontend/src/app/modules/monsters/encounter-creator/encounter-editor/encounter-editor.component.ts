@@ -4,6 +4,7 @@ import { EncounterService } from '../../services/encounter.service';
 
 import { MatDialog } from "@angular/material/dialog"
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
+import { AddMonsterDialogComponent } from './add-monster-dialog/add-monster-dialog.component';
 
 @Component({
   selector: 'app-encounter-editor',
@@ -18,7 +19,7 @@ export class EncounterEditorComponent implements OnInit {
   encounters: IEncounter[] = [];
   encounter!: IEncounter | undefined;
 
-  memberLevelSelectOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+  memberLevelSelectOptions: number[] = [];
 
   constructor(private encounterService: EncounterService, public dialog: MatDialog) { }
 
@@ -26,7 +27,19 @@ export class EncounterEditorComponent implements OnInit {
     this.encounterService.encountersSubject.subscribe(encounters => {
       this.encounters = encounters;
       this.encounter = encounters.find(encounter => encounter.id === this.encounterId);
+      this.updateMemberLevelSelectOptions();
     });
+    this.openAddMonsterDialog();
+  }
+
+  updateMemberLevelSelectOptions(): void {
+    let allOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+    if (this.encounter) {
+      this.encounter.partyMembers.forEach(member => {
+        allOptions = allOptions.filter(option => option != member.level);
+      })
+    }
+    this.memberLevelSelectOptions = [...allOptions];
   }
 
   handleBackToOverClick(): void {
@@ -41,6 +54,15 @@ export class EncounterEditorComponent implements OnInit {
         if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
           this.encounterService.addMemberToEncounter(this.encounter.id, result);
         }
+      }
+    })
+  }
+
+  openAddMonsterDialog(): void {
+    let dialogRef = this.dialog.open(AddMonsterDialogComponent);
+    dialogRef.afterClosed().subscribe(result =>  {
+      if (result) {
+        console.log(`add-monster-dialog-result was: ${result}`)
       }
     })
   }
@@ -69,19 +91,19 @@ export class EncounterEditorComponent implements OnInit {
 
   increaseMonsterQuantity(monsterName: string): void {
     if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
-      // this.encounterService.adjustMonsterQuantity(this.encounter.id, monsterName, 'increment');
+      this.encounterService.adjustMonsterQuantity(this.encounter.id, monsterName, 'increment');
     }
   }
 
   decreaseMonsterQuantity(monsterName: string): void {
     if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
-      // this.encounterService.adjustMonsterQuantity(this.encounter.id, monsterName, 'decrement');
+      this.encounterService.adjustMonsterQuantity(this.encounter.id, monsterName, 'decrement');
     }
   }
 
   removeMonster(monsterName: string): void {
     if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
-      // this.encounterService.deleteMonster(this.encounter.id, monsterName);
+      this.encounterService.deleteMonster(this.encounter.id, monsterName);
     }
   }
 

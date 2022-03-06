@@ -24,9 +24,8 @@
                         <mat-icon>close</mat-icon>
                     </button>
 
-                    <div class="party-member-text">
-                        Adventurer{{1 < member.quantity ? 's' : '' }} Level: {{member.level}} </div>
-
+                    <div class="party-member-text">Adventurer{{1 < member.quantity ? 's' : '' }} Level: {{member.level}}
+                            </div>
                     </div>
 
                     <div class="quantity-controller">
@@ -49,19 +48,31 @@
             <div class="squad-view-title-container">
                 <div class="squad-window-title-placeholder"></div>
                 <mat-card-title class="squad-window-title">Monsters</mat-card-title>
-                <button mat-raised-button>ADD</button>
+                <button mat-raised-button (click)="openAddMonsterDialog()">ADD</button>
             </div>
 
             <mat-card class="monster-element" *ngFor="let monster of encounter.monsters">
 
                 <div class="monster-left-side">
-                    <button mat-button class="delete-button" (click)="removeMonster(monster.name)">
+                    <button mat-button class="delete-button" (click)="removeMonster(monster.slug)">
                         <mat-icon>close</mat-icon>
                     </button>
                     <div class="monster-rating-indicator">{{monster.rating}}</div>
-                    <div class="monster-text">{{monster.name}}{{1 < monster.quantity ? 's' : ''}}</div>
+
+                    <!-- {{1 < monster.quantity ? 's' : '' }} is messing up the auto-formatting indentation :( -->
+                    <div class="monster-text">{{monster.name}}{{1 < monster.quantity ? 's' : '' }}</div>
                     </div>
 
+                    <div class="monster-right-side">
+                        <button mat-raised-button class="monster-details-button" [routerLink]="'/monsters/monster/' + monster.slug">DETAILS</button>
+                        <div class="quantity-controller">
+                            <button mat-raised-button class="quantity-control-button"
+                                (click)="decreaseMonsterQuantity(monster.slug)">-</button>
+                            <div class="quantity-display">{{monster.quantity}}</div>
+                            <button mat-raised-button class="quantity-control-button"
+                                (click)="increaseMonsterQuantity(monster.slug)">+</button>
+                        </div>
+                    </div>
 
             </mat-card>
 
@@ -69,9 +80,6 @@
 
 
     </div>
-
-
-
 
 </mat-card>
 

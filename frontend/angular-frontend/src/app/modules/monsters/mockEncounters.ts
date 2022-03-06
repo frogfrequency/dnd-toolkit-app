@@ -2,7 +2,7 @@ import { IEncounter } from 'src/app/interfaces/IEncounter';
 
 export let mockEncounters: IEncounter[] = [
     {
-        name: 'LakeSide Ambush',
+        name: 'Lake Side Ambush',
         id: 11,
         imageURL: 'https://www.wallpaperup.com/uploads/wallpapers/2017/12/21/1173012/8f0981c63a5e6b6078656e4e148840e7-700.jpg',
         partyMembers: [

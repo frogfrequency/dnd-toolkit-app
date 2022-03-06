@@ -27,11 +27,13 @@ import { MonsterListViewComponent } from './monster-list-view/monster-list-view.
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { EncounterCreatorComponent } from './encounter-creator/encounter-creator.component';
 import { EncounterCardComponent } from './encounter-creator/encounter-card/encounter-card.component';
 import { EncounterEditorComponent } from './encounter-creator/encounter-editor/encounter-editor.component';
 import { AddEncounterPopupComponent } from './encounter-creator/add-encounter-popup/add-encounter-popup.component';
 import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/add-member-dialog/add-member-dialog.component';
+import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/add-monster-dialog/add-monster-dialog.component';
 
 
 @NgModule({
@@ -52,6 +54,7 @@ import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/a
     EncounterEditorComponent,
     AddEncounterPopupComponent,
     AddMemberDialogComponent,
+    AddMonsterDialogComponent,
   ],
   entryComponents: [
     AddMemberDialogComponent
@@ -69,7 +72,8 @@ import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/a
     MatDividerModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   exports: [
     MonstersComponent,

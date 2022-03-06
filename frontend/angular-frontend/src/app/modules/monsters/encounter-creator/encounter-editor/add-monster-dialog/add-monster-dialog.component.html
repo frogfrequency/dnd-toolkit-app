@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Add Monster</h2>
+
+
+<mat-dialog-content>
+    <h4>choose a way to add a monster:</h4>
+    <mat-tab-group selectedIndex="1">
+        <mat-tab label="Name Search">
+            name search content here
+        </mat-tab>
+        <mat-tab label="from Favorites" #fromFavoritesTab>
+            <mat-form-field appearance="fill" class="monster-from-favorites-select">
+                <mat-label>Favorit</mat-label>
+                <mat-select #monsterFromFavoritesSelect>
+                    <mat-option *ngFor="let favorit of favoritedMonsters" [value]="favorit.slug">
+                        {{favorit.challenge_rating}} - {{favorit.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-tab>
+    </mat-tab-group>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close disabled="{{!monsterFromFavoritesSelect.value || !fromFavoritesTab.isActive}}" mat-dialog-close="{{ fromFavoritesTab.isActive ? monsterFromFavoritesSelect.value : 'hello'}}">ADD</button>
+    <button mat-button mat-dialog-close>RETURN</button>
+</mat-dialog-actions>

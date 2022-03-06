@@ -45,9 +45,9 @@ export class EncounterService {
   }
 
   addMemberToEncounter(encounterId: number, level: number) {
-    let idx = this.encounters.findIndex(encounter => encounter.id === encounterId)
+    let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
 
-    this.encounters[idx].partyMembers.push(
+    this.encounters[encounterIdx].partyMembers.push(
       {
         level: level,
         quantity: 1
@@ -71,8 +71,40 @@ export class EncounterService {
   deleteMember(encounterId: number, level: number): void {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
     this.encounters[encounterIdx].partyMembers = this.encounters[encounterIdx].partyMembers.filter(member => member.level != level);
+    this.encountersSubject.next(this.encounters);
   }
 
-  // delteMonster()
+
+  // NOT FINISHED...
+  addMonsterToEncounter(encounterId: number, slug: string) {
+    let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
+
+    this.encounters[encounterIdx].monsters.push(
+      {
+        slug: 'skeleton',
+        name: 'Skeleton',
+        quantity: 6,
+        rating: "1/4"
+      }
+    )
+
+  }
+
+  adjustMonsterQuantity(encounterId: number, slug: string, operation: string) {
+    let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
+    let monsterIdx = this.encounters[encounterIdx].monsters.findIndex(monster => monster.slug === slug);
+    if (operation === 'increment') {
+      this.encounters[encounterIdx].monsters[monsterIdx].quantity = this.encounters[encounterIdx].monsters[monsterIdx].quantity + 1;
+    } else if (operation == 'decrement') {
+      if (1 < this.encounters[encounterIdx].monsters[monsterIdx].quantity) {
+        this.encounters[encounterIdx].monsters[monsterIdx].quantity = this.encounters[encounterIdx].monsters[monsterIdx].quantity - 1
+      }
+    }
+  }
+
+  deleteMonster(encounterId: number, slug: string) {
+    let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
+    this.encounters[encounterIdx].monsters = this.encounters[encounterIdx].monsters.filter(monster => monster.slug != slug);
+  }
 
 }
