@@ -62,7 +62,12 @@ export class EncounterEditorComponent implements OnInit {
     let dialogRef = this.dialog.open(AddMonsterDialogComponent);
     dialogRef.afterClosed().subscribe(result =>  {
       if (result) {
-        console.log(`add-monster-dialog-result was: ${result}`)
+        
+        if (!(result === 'here should be monsterFromNameSelect...')) { // remove this when fromNameSearch-thingy is done
+          if (this.encounter) {
+            this.encounterService.addMonsterToEncounter(this.encounter.id, result)
+          }
+        }
       }
     })
   }

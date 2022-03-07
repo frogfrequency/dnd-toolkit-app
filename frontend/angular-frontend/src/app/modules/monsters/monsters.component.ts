@@ -25,25 +25,23 @@ export class MonstersComponent implements OnInit {
 
   allMonsters: IMonster[] = [];
 
-  finishedFetchingAllMonsters: boolean = true; // this must be false
-
   constructor(private monsterService: MonsterService) { }
 
   ngOnInit(): void {
     console.log(`monster.component.ts's ogOnInit() called`)
-    // this.getAllMonsters(); // change these to work with either the mock monsters or to fetch all Monsters onInit. dont forget to change finishedFetchingAllMonsters
-    this.allMonsters = mockMonsters; // change these to work with either the mock monsters or to fetch all Monsters onInit. dont forget to change finishedFetchingAllMonsters
+    this.setAllMonsters(); 
+    
+    this.monsterService.allMonstersSubject.subscribe(allMonsters => {
+      this.allMonsters = allMonsters;
+    });
   }
 
   setActivePage(element: string) {
     this.activeMonsterPage = element;
   }
 
-  getAllMonsters() {
-    this.monsterService.getAllMonsters().subscribe((allMonsters) => {
-      this.allMonsters = allMonsters;
-      this.finishedFetchingAllMonsters = true;
-    })
+  setAllMonsters() {
+    this.monsterService.getAllMonsters();
   }
 
 }

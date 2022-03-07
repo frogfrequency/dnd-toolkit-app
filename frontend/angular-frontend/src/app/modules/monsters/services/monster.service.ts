@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { IMonster } from 'src/app/interfaces/IMonster';
 import { BehaviorSubject } from 'rxjs';
+
+import { mockMonsters } from '../mockMonsters';
 
 
 @Injectable({
@@ -13,10 +14,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MonsterService {
 
+	allMonsters: IMonster[] = [];
+	allMonstersSubject!: BehaviorSubject<IMonster[]>;
+
 
 	private backendUrl = 'http://localhost:3000/api/monsters';
 
-	constructor(private http: HttpClient) {  }
+	constructor(private http: HttpClient) {
+		this.allMonstersSubject = new BehaviorSubject(this.allMonsters);
+	}
 
 	getMonsterByName(searchString: string): Observable<IMonster> {
 		let Url = `${this.backendUrl}/${searchString}`
@@ -27,9 +33,24 @@ export class MonsterService {
 		return oneMonster
 	}
 
-	getAllMonsters(): Observable<IMonster[]> {
-		let Url = this.backendUrl + "/allMonsters"
-		let allTheMonsters = this.http.get<IMonster[]>(Url)
-		return allTheMonsters
+	// getAllMonsters(): Observable<IMonster[]> {
+	getAllMonsters(): void{
+
+		// EITHER THIS
+
+		// console.log(`getAllMonsters in monster.service called`)
+		// let Url = this.backendUrl + "/allMonsters"
+		// let allTheMonsters = this.http.get<IMonster[]>(Url);
+		// allTheMonsters.subscribe(monsters => {
+		// 	this.allMonsters = monsters;
+		// 	console.log(`length of this.allMonsters: ${this.allMonsters.length}`)
+		// 	this.allMonstersSubject.next(this.allMonsters);
+		// })
+
+		// OR THIS NEEDS TO BE ACTIVE
+
+		this.allMonsters = mockMonsters;
+		this.allMonstersSubject.next(this.allMonsters);
+
 	}
 }

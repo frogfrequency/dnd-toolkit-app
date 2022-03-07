@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 
 import { IEncounter } from 'src/app/interfaces/IEncounter';
+import { IMonster } from 'src/app/interfaces/IMonster';
 import { mockEncounters } from '../mockEncounters';
 
 @Injectable({
@@ -76,15 +77,15 @@ export class EncounterService {
 
 
   // NOT FINISHED...
-  addMonsterToEncounter(encounterId: number, slug: string) {
+  addMonsterToEncounter(encounterId: number, monster: IMonster) {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
-
+    console.log(monster.slug)
     this.encounters[encounterIdx].monsters.push(
       {
-        slug: 'skeleton',
-        name: 'Skeleton',
-        quantity: 6,
-        rating: "1/4"
+        slug: monster.slug,
+        name: monster.name,
+        quantity: 1,
+        rating: monster.challenge_rating
       }
     )
 
