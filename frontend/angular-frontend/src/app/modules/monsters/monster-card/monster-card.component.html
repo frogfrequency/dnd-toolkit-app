@@ -1,0 +1,63 @@
+<!-- <p>monster-card works!</p> -->
+
+<!-- <div class="card-container">
+    
+    <h2>{{monster.slug}}</h2>
+    <br>
+    <h3>type: {{monster.type}}</h3>
+
+</div> -->
+
+<mat-card class="monster-card">
+
+    <div class="card-header-container">
+        <div>
+            <mat-card-title>{{monster.name}}</mat-card-title>
+            <mat-card-subtitle>{{monster.size}} &nbsp;|&nbsp; {{monster.type}} &nbsp;|&nbsp; {{monster.alignment}}
+            </mat-card-subtitle>
+        </div>
+        <div class="challenge-rating-indicator">{{monster.challenge_rating}}</div>
+    </div>
+    <!-- setting this.onerror = null to prevent infinite loop if onerror image cannot be found either -->
+    <!-- images are not used since from all ~1000 monsters there are only 12 defined -->
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="image not found" onerror="this.onerror=null; this.src=`https:/\/www.colorado.edu/center/west/sites/default/files/styles/small/public/people/no_image_available_0.png?itok=ZtiDdT5Z`"> -->
+    <mat-card-content>
+        <div class="monster-characteristic">
+            <div class="monster-characteristic-name">Armor Class: </div>
+            <div class="monster-characteristic-value">{{monster.armor_class}}</div>
+        </div>
+
+        <div class="monster-characteristic">
+            <div class="monster-characteristic-name">Hit Points: </div>
+            <div class="monster-characteristic-value">{{monster.hit_points}}</div>
+        </div>
+
+        <div class="monster-characteristic">
+            <div class="monster-characteristic-name">Speed:</div>
+            <div class="monster-characteristic-value">{{monsterSpeed}}</div>
+        </div>
+
+        <div class="monster-characteristic">
+            <div class="monster-characteristic-name">Languages:</div>
+            <div class="monster-characteristic-value">{{monster.languages}}</div>
+        </div>
+
+        <div class="monster-characteristic">
+            <div class="monster-characteristic-name">Senses:</div>
+            <div class="monster-characteristic-value">{{monster.senses}}</div>
+        </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button [routerLink]="monstersDetailsLink">DETAILS</button>
+
+        <!-- either render favorite or unfavorite button depending on (*ngIf) if the monster.name is included in the favorites arr.... -->
+        <button mat-button *ngIf="!monsterIsFavorited" (click)="onFavoriteButtonClick()">FAVORITE</button>
+        <button mat-button *ngIf="monsterIsFavorited" (click)="onUnfavoriteButtonClick()">UNFAVORITE</button>
+
+
+        <!-- <div>{{monsterIsFavorited}}</div> -->
+
+    </mat-card-actions>
+</mat-card>

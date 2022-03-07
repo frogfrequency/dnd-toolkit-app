@@ -1,0 +1,9 @@
+<button mat-raised-button *ngIf="!selectedEncounterID" (click)="openAddNewEncounterPopup()">ADD NEW ENCOUNTER</button>
+
+<div *ngIf="!selectedEncounterID" class="cards-container">
+    <app-encounter-card *ngFor="let encounter of encounters" [encounter]="encounter" (editClick)="setSelectedEncounterID(encounter.id)" (deleteClick)="removeEncounter(encounter.id)"></app-encounter-card>
+</div>
+
+<app-encounter-editor *ngIf="selectedEncounterID" [encounterId]="selectedEncounterID" (backToOverviewClick)="showOverview()"></app-encounter-editor>
+
+<app-add-encounter-popup *ngIf="addNewEncounterPopupDisplay" (addClick)="closeAddNewEncounterPopup()"></app-add-encounter-popup>

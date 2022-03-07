@@ -1,0 +1,26 @@
+
+<div class="favorites-header">
+    <div class="mat-h2" *ngIf="0 < favoritedMonsters.length">your favorited monsters: </div>
+    <div class="mat-h2" *ngIf="favoritedMonsters.length == 0">you haven't added any favorites yet</div>
+    <div>
+        <mat-button-toggle-group name="viewMode" aria-label="Toggle View Mode" appearance="legacy">
+            <mat-button-toggle (change)="setViewMode('list')" checked="true" value="red">List-View</mat-button-toggle>
+            <mat-button-toggle (change)="setViewMode('card')" value="green">Card-View</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+
+
+
+
+<div *ngIf="viewMode == 'card'" class="cards-container">
+    <app-monster-card *ngFor="let monster of favoritedMonsters" [monster]="monster"></app-monster-card>
+</div>
+
+
+<div *ngIf="viewMode == 'list'">
+    <app-monster-list-view *ngFor="let monster of favoritedMonsters" [monster]="monster"></app-monster-list-view>
+</div>
+
+
+<div class="placeholder"> </div>

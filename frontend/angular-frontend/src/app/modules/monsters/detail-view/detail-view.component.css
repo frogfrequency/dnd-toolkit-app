@@ -1,0 +1,36 @@
+.detail-view-container {
+    max-width: 1200px;
+    padding-bottom: 16px;
+}
+
+.mat-raised-button {
+    margin: 32px 16px 16px 16px;
+}
+
+.detail-container {
+    /* background-color: orange; */
+    margin: 16px 32px 16px 32px;
+    /* max-width: 1200px; */
+}
+
+.mat-display-2 {
+    margin: 16px 0px 4px 0px;
+}
+
+.italic-subheader {
+    display: flex;
+    flex-direction: row;
+}
+
+.horizontal-divider {
+    margin-left: 11px;
+    margin-right: 8px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.mat-divider {
+    margin: 16px 0px 16px 0px;
+}

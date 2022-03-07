@@ -1,0 +1,12 @@
+.input-field {
+    border: 1px solid rgba(255,255,255,.2);
+    width: 300px;
+    padding: 16px;
+}
+
+.mat-list-item {
+    /* background-color: orange; */
+    /* min-height: 20px; */
+    height: 25px;
+    /* border: solid 1px; */
+}

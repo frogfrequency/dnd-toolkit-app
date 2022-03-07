@@ -1,0 +1,33 @@
+.ability-score-container {
+    display: flex;
+}
+
+.ability-score {
+    margin: 4px 8px;
+    /* background-color: blue; */
+    width: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ability-score-identifier {
+    margin: 4px 8px;
+    /* background-color: blue; */
+    width: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+
+.score-name {
+    /* font-size: 14px; */
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.score-value {
+    margin-bottom: 4px;
+    font-weight: 200;
+}

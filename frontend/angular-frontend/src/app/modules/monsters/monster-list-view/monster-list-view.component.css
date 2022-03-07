@@ -1,0 +1,31 @@
+.monster-list-view-element {
+    /* background-color: orange; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px;
+}
+
+
+.mat-card-subtitle {
+    /* background-color: orange; */
+    margin-bottom: 0px;
+}
+
+.challenge-rating-indicator {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0px 16px 0px 0px;
+    width: 32px;
+    text-align: center;
+    /* margin: auto; */
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
+.mat-raised-button {
+    margin: 0px 8px;
+}

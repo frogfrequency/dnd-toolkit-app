@@ -5,6 +5,13 @@ import * as monsterService from "../services/monster.service";
 
 export const monsterRouter = Router();
 
+// this is not used anymore because we created the better /allMonsters
+monsterRouter.get('/allMonsters', async (req: Request, res: Response) => {
+    console.log('/ (NEWallMonsters) called');
+    const allMonsters: IMonster[] = await monsterService.fetchAllMonsters();
+    res.json(allMonsters);
+});
+
 monsterRouter.get('/', async (req: Request, res: Response) => {
     console.log('/ (allMonsters) called');
     const allMonsters: IMonster[] = await monsterService.fetchAllMonsters();
@@ -30,7 +37,7 @@ monsterRouter.get('/filter', async (req: Request, res: Response) => {
 monsterRouter.get('/:name', async (req: Request, res: Response) => {
     console.log('/:name called');
     const monsterName: string = req.params.name;
-    const monster: IMonster = await monsterService.fetchMonsterByName(monsterName);
+    const monster: IMonster | number = await monsterService.fetchMonsterByName(monsterName);
     
     res.json(monster);
 });
@@ -41,6 +48,8 @@ monsterRouter.get('/type/:type', async (req: Request, res: Response) => { // is 
     const allMonstersWithSpecifiedType: IMonster[] = allMonsters.filter(monster => monster.type === typeName)
     res.json(allMonstersWithSpecifiedType);
 }); 
+
+
 
 
 // module.exports = monsterRouter;

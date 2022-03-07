@@ -1,0 +1,19 @@
+<div class="ability-score-container">
+
+    <div class="ability-score-identifier mat-body">
+        <div class="score-name">&nbsp;</div>
+
+        <div class="score-name">Score:</div>
+        <div class="score-name">Saving Throw:</div>
+
+    </div>
+
+    <div *ngFor="let score of scores" class="ability-score mat-body">
+        <div class="score-name">{{score[0]}}</div>
+        <div class="score-value">{{score[1]}}&nbsp; ({{score[2]}})</div>
+        <div class="score-value">{{score[3]}}</div>
+
+    </div>
+
+
+</div>

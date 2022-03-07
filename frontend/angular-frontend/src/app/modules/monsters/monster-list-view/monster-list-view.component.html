@@ -1,0 +1,22 @@
+<mat-card class="monster-list-view-element">
+
+
+    <div class="left-side">
+        <div class="challenge-rating-indicator">{{monster.challenge_rating}}</div>
+        <div>
+            <mat-card-title>{{monster.name}}</mat-card-title>
+            <mat-card-subtitle>{{monster.size}} &nbsp;|&nbsp; {{monster.type}} &nbsp;|&nbsp; {{monster.alignment}}
+            </mat-card-subtitle>
+        </div>
+    </div>
+    
+    
+    <div>
+        <button mat-raised-button [routerLink]="monstersDetailsLink">DETAILS</button>
+        <button mat-raised-button *ngIf="!monsterIsFavorited" (click)="onFavoriteButtonClick()">FAVORITE</button>
+        <button mat-raised-button *ngIf="monsterIsFavorited" (click)="onUnfavoriteButtonClick()">UNFAVORITE</button>
+    </div>
+
+
+
+</mat-card>

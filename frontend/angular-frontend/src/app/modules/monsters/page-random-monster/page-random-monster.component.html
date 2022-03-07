@@ -1,0 +1,5 @@
+
+<br>
+<button mat-raised-button color="Basic" (click)="setNewRandomMonster()">new random monster</button>
+
+<app-monster-card *ngIf="randomMonster" [monster]="randomMonster"></app-monster-card>

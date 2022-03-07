@@ -1,0 +1,30 @@
+/* please someone explain to me why this is needed */
+.placeholder { 
+    padding-top: 80px;
+}
+
+.mat-h2 {
+    /* background-color: blue; */
+    margin: 0px;
+}
+
+.favorites-header {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    /* height: 100px; */
+}
+
+.mat-button-toggle {
+    /* background-color: brown; */
+    margin: auto;
+}
+
+.cards-container {
+    /* background-color: orange; */
+    display: flex;
+    flex-wrap: wrap;
+}

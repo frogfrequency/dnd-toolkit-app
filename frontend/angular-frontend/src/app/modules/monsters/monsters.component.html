@@ -1,0 +1,42 @@
+<!-- <p>monsters works!</p> -->
+
+<!-- <app-monster-card></app-monster-card> -->
+
+<mat-sidenav-container>
+
+    <mat-sidenav #sidenav mode="push">
+        <!-- simply add openend after mode="push" to have id open by default  -->
+        <mat-nav-list>
+
+            <mat-list-item *ngFor="let element of sidenavElements" (click)="setActivePage(element.selector); sidenav.close()">
+                {{element.label}}
+            </mat-list-item>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content *ngIf="0 < allMonsters.length">
+        
+        <mat-icon (click)="sidenav.toggle()" class="open-sidenav-button">menu</mat-icon>
+
+        <!-- <h1 [style.background-color]="'blue'">hello</h1> -->
+        
+        <!-- <app-page-find-monster *ngIf="activeMonsterPage === 'findMonster'"></app-page-find-monster> -->
+
+        <!-- using hidden so the components dont lose their state.. if ngif was used they would be re-initialised everytime you come back to them -->
+        <app-page-find-monster [hidden]="activeMonsterPage !== 'findMonster'" [allMonsters]="allMonsters"></app-page-find-monster>
+        <app-page-explore-monsters [hidden]="activeMonsterPage !== 'exploreMonsters'"></app-page-explore-monsters>
+        <app-page-favorites [hidden]="activeMonsterPage !== 'favorites'"></app-page-favorites>
+        <app-page-random-monster [hidden]="activeMonsterPage !== 'randomMonster'" [allMonsters]="allMonsters"></app-page-random-monster>
+        <app-encounter-creator [hidden]="activeMonsterPage !== 'encounterCreator'"></app-encounter-creator>
+
+
+    </mat-sidenav-content>
+ 
+    <div class="summon-spinner" *ngIf="!(0 < allMonsters.length)">
+
+        <mat-spinner></mat-spinner>
+        <div  class="mat-subheading-2">Summonig all the monsters!</div>
+    </div>
+
+</mat-sidenav-container>
