@@ -5,6 +5,8 @@ import { EncounterService } from '../../services/encounter.service';
 import { MatDialog } from "@angular/material/dialog"
 import { AddMemberDialogComponent } from './add-member-dialog/add-member-dialog.component';
 import { AddMonsterDialogComponent } from './add-monster-dialog/add-monster-dialog.component';
+import { MonsterService } from '../../services/monster.service';
+import { IMonster } from 'src/app/interfaces/IMonster';
 
 @Component({
   selector: 'app-encounter-editor',
@@ -21,7 +23,9 @@ export class EncounterEditorComponent implements OnInit {
 
   memberLevelSelectOptions: number[] = [];
 
-  constructor(private encounterService: EncounterService, public dialog: MatDialog) { }
+  allMonsters: IMonster[] = [];
+
+  constructor(private encounterService: EncounterService, public monsterService: MonsterService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.encounterService.encountersSubject.subscribe(encounters => {
@@ -29,7 +33,11 @@ export class EncounterEditorComponent implements OnInit {
       this.encounter = encounters.find(encounter => encounter.id === this.encounterId);
       this.updateMemberLevelSelectOptions();
     });
-    this.openAddMonsterDialog();
+    this.monsterService.allMonstersSubject.subscribe(monsters => {
+      this.allMonsters = monsters;
+    })
+
+    this.openAddMonsterDialog(); // TESTING PURPOSES
   }
 
   updateMemberLevelSelectOptions(): void {
@@ -47,7 +55,7 @@ export class EncounterEditorComponent implements OnInit {
   }
 
   openAddMemberDialog(): void {
-    let dialogRef = this.dialog.open(AddMemberDialogComponent, { data: this.memberLevelSelectOptions });
+    let dialogRef = this.dialog.open(AddMemberDialogComponent, {data: {encounter: this.encounter}});
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(`result was ${result}`)
@@ -59,16 +67,18 @@ export class EncounterEditorComponent implements OnInit {
   }
 
   openAddMonsterDialog(): void {
-    let dialogRef = this.dialog.open(AddMonsterDialogComponent);
-    dialogRef.afterClosed().subscribe(result =>  {
-      if (result) {
-        
-        if (!(result === 'here should be monsterFromNameSelect...')) { // remove this when fromNameSearch-thingy is done
-          if (this.encounter) {
-            this.encounterService.addMonsterToEncounter(this.encounter.id, result)
+
+    let dialogRef = this.dialog.open(AddMonsterDialogComponent, {data: {encounter: this.encounter}});
+    dialogRef.afterClosed().subscribe(slug =>  {
+      // if (slug) { 
+          if (this.encounter && slug) {
+            console.log(`dialog closed: ${slug}`)
+            let fullMonsterToAdd = this.allMonsters.find(monster => monster.slug === slug);
+            if (fullMonsterToAdd) {
+              this.encounterService.addMonsterToEncounter(this.encounter.id, fullMonsterToAdd);
+            }
           }
-        }
-      }
+      // }
     })
   }
 

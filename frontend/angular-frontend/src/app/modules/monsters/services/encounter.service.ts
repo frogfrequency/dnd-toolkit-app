@@ -79,7 +79,6 @@ export class EncounterService {
   // NOT FINISHED...
   addMonsterToEncounter(encounterId: number, monster: IMonster) {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
-    console.log(monster.slug)
     this.encounters[encounterIdx].monsters.push(
       {
         slug: monster.slug,

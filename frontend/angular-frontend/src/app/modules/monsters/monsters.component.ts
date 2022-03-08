@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { IMonster } from 'src/app/interfaces/IMonster';
 import { MonsterService } from './services/monster.service';
+import { FavoritesService } from './services/favorites.service'; // only used to set mockFavorites
 
 import { mockMonsters } from './mockMonsters';
 
@@ -25,7 +26,7 @@ export class MonstersComponent implements OnInit {
 
   allMonsters: IMonster[] = [];
 
-  constructor(private monsterService: MonsterService) { }
+  constructor(private monsterService: MonsterService, private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
     console.log(`monster.component.ts's ogOnInit() called`)
@@ -33,6 +34,8 @@ export class MonstersComponent implements OnInit {
     
     this.monsterService.allMonstersSubject.subscribe(allMonsters => {
       this.allMonsters = allMonsters;
+      this.favoritesService.addNewFavorite(this.allMonsters[0]); // mocky
+      this.favoritesService.addNewFavorite(this.allMonsters[4]); // mocky
     });
   }
 
