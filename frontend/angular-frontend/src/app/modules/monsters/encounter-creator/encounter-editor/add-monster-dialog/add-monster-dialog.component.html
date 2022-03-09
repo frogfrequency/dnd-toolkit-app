@@ -2,28 +2,58 @@
 
 
 <mat-dialog-content>
+
     <h4>choose a way to add a monster:</h4>
-    <mat-tab-group selectedIndex="1">
-        <mat-tab label="Name Search">
-            name search content here
+
+    <mat-tab-group selectedIndex="0">
+
+        <mat-tab label="Name Search" #nameSearchTab>
+            <mat-form-field appearance="fill" class="form-input-field">
+                <mat-label>search Monsters by Name</mat-label>
+                <input matInput #nameSearch placeholder="enter monster name" value="{{clickedSearchEntry}}"
+                    (input)="inputChanged(nameSearch.value)">
+            </mat-form-field>
+
+            <div class="matching-search-entries-box">
+                <mat-selection-list [multiple]="false" *ngFor="let entry of matchingSearchEntries.slice(0, 7);"
+                    role="list">
+                    <mat-list-option [disabled]="monsterNamesAlreadyInEncounter.includes(entry)" role="listitem"><a (click)="setClickedSearchEntry(entry)">{{entry}}</a>
+                    </mat-list-option>
+                </mat-selection-list>
+
+                <mat-list role="list" *ngIf="7 < matchingSearchEntries.length">
+                    <mat-list-item role="listitem">...and {{matchingSearchEntries.length-7}} more</mat-list-item>
+                </mat-list>
+            </div>
+
+
+            <!-- <app-name-search [searchEntries]="allMonstersSlugs" [searchFieldParams]="searchFieldParams"></app-name-search> -->
         </mat-tab>
+
+
+
+
+
         <mat-tab label="from Favorites" #fromFavoritesTab>
-            <mat-form-field appearance="fill" class="monster-from-favorites-select">
+            <mat-form-field appearance="fill" class="form-input-field">
                 <mat-label>Favorit</mat-label>
                 <mat-select #monsterFromFavoritesSelect>
-                    <mat-option *ngFor="let favorit of favoritedMonsters" [value]="favorit.slug" [disabled]="monstersAlreadyInEncounter.includes(favorit.slug)">
+                    <mat-option *ngFor="let favorit of favoritedMonsters" [value]="favorit.name"
+                        [disabled]="monsterNamesAlreadyInEncounter.includes(favorit.name)">
                         {{favorit.challenge_rating}} - {{favorit.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-tab>
+
     </mat-tab-group>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close disabled="{{!monsterFromFavoritesSelect.value || !fromFavoritesTab.isActive}}"
-        mat-dialog-close="{{ fromFavoritesTab.isActive ? monsterFromFavoritesSelect.value : 'here should be monsterFromNameSelect...'}}">
+    <button mat-button mat-dialog-close
+        disabled="{{ ((!monsterFromFavoritesSelect.value && fromFavoritesTab.isActive) || (!currentSearchStringValidity && nameSearchTab.isActive))}}"
+        mat-dialog-close="{{ fromFavoritesTab.isActive ? monsterFromFavoritesSelect.value : nameSearch.value}}">
         ADD
     </button>
     <button mat-button mat-dialog-close>RETURN</button>

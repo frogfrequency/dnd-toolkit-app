@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IMonster } from 'src/app/interfaces/IMonster';
+import { INameSearchParams } from 'src/app/interfaces/INameSearchParams';
 import { EncounterService } from '../../../services/encounter.service';
 import { FavoritesService } from '../../../services/favorites.service';
+import { MonsterService } from '../../../services/monster.service';
 
 @Component({
   selector: 'app-add-monster-dialog',
@@ -11,20 +13,80 @@ import { FavoritesService } from '../../../services/favorites.service';
 })
 export class AddMonsterDialogComponent implements OnInit {
 
+  // GENERAL
+  
+  allMonsters: IMonster[] = [];
+  monsterNamesAlreadyInEncounter: string[] = [];
+  
+  // ADD FROM FAVORITES
+  
   favoritedMonsters: IMonster[] = [];
-  monstersAlreadyInEncounter: string[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private favoritesService: FavoritesService, private encounterService: EncounterService) { }
+
+  // ADD FROM NAME SEARCH
+  allMonsterNames: string[] = [];
+  clickedSearchEntry: string = '';
+  matchingSearchEntries: string[] = [];
+  currentSearchStringValidity: boolean = false;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private favoritesService: FavoritesService,
+    private encounterService: EncounterService,
+    private monsterService: MonsterService,
+  ) { }
 
   ngOnInit(): void {
     this.favoritesService.favoritedMonstersSubject.subscribe(favorites => {
       this.favoritedMonsters = favorites;
-      this.data.encounter.monsters.forEach( (monster: any) => {
-        this.monstersAlreadyInEncounter.push(monster.slug)
+      this.data.encounter.monsters.forEach((monster: any) => {
+        this.monsterNamesAlreadyInEncounter.push(monster.name)
       })
     });
+
+
+    this.monsterService.allMonstersSubject.subscribe(allMonsters => {
+      this.allMonsters = allMonsters;
+      this.allMonsterNames = [];
+      this.allMonsters.forEach(monster => {
+        this.allMonsterNames.push(monster.name);
+      });
+    });
+
   }
 
+  inputChanged(newString: string): void {
+  
+    if (2 <= newString.length) {
+      console.log(`input changed`)
+      this.setNameSearchStringValidity(newString);
+      let matching: string[] = [];
+      newString = newString.toLowerCase();
+      this.allMonsterNames.forEach( element => {
+        if (element.toLowerCase().includes(newString)) {
+          matching.push(element);
+        }
+      });
+      this.matchingSearchEntries = [...matching]
+    } else {
+      this.matchingSearchEntries = [];
+      this.setNameSearchStringValidity(newString);
+    }
+  }
+
+  setClickedSearchEntry(clickedSearchEntry: string): void {
+    this.clickedSearchEntry = clickedSearchEntry;
+    this.setNameSearchStringValidity(clickedSearchEntry);
+    this.matchingSearchEntries = [];
+  }
+
+  setNameSearchStringValidity(currentValue: string): void {
+    if (!this.data.encounter.monsters.find( (element:any) => element.name === currentValue) && this.allMonsterNames.find(element => element === currentValue)) {
+      this.currentSearchStringValidity = true;
+    } else {
+      this.currentSearchStringValidity = false;
+    }
+  }
 
   // setSelectedMonster(slug: string): void {
   //   // if (this.favoritedMonsters) {

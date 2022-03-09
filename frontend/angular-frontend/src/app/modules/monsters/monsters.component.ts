@@ -34,8 +34,8 @@ export class MonstersComponent implements OnInit {
     
     this.monsterService.allMonstersSubject.subscribe(allMonsters => {
       this.allMonsters = allMonsters;
-      this.favoritesService.addNewFavorite(this.allMonsters[0]); // mocky
-      this.favoritesService.addNewFavorite(this.allMonsters[4]); // mocky
+      // this.favoritesService.addNewFavorite(this.allMonsters[0]); // mocky
+      // this.favoritesService.addNewFavorite(this.allMonsters[4]); // mocky
     });
   }
 
@@ -44,7 +44,7 @@ export class MonstersComponent implements OnInit {
   }
 
   setAllMonsters() {
-    this.monsterService.getAllMonsters();
+    this.monsterService.setAllMonsters();
   }
 
 }

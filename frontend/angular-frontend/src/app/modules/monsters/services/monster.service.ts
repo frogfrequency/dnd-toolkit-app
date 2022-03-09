@@ -34,7 +34,7 @@ export class MonsterService {
 	}
 
 	// getAllMonsters(): Observable<IMonster[]> {
-	getAllMonsters(): void{
+	setAllMonsters(): void{
 
 		// EITHER THIS
 
