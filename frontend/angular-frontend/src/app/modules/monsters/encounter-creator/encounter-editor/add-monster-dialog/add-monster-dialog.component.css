@@ -1,3 +1,18 @@
-.monster-from-favorites-select {
+
+.form-input-field {
     margin: 16px 0px 0px 16px;
+}
+
+
+.mat-list-item {
+    /* background-color: orange; */
+    /* min-height: 20px; */
+    height: 20px;
+    /* border: solid 1px; */
+}
+
+
+.matching-search-entries-box {
+    /* background-color: blue; */
+    height: 228px;
 }

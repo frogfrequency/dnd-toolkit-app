@@ -69,16 +69,13 @@ export class EncounterEditorComponent implements OnInit {
   openAddMonsterDialog(): void {
 
     let dialogRef = this.dialog.open(AddMonsterDialogComponent, {data: {encounter: this.encounter}});
-    dialogRef.afterClosed().subscribe(slug =>  {
-      // if (slug) { 
-          if (this.encounter && slug) {
-            console.log(`dialog closed: ${slug}`)
-            let fullMonsterToAdd = this.allMonsters.find(monster => monster.slug === slug);
+    dialogRef.afterClosed().subscribe(name =>  {
+          if (this.encounter && name) {
+            let fullMonsterToAdd = this.allMonsters.find(monster => monster.name === name);
             if (fullMonsterToAdd) {
               this.encounterService.addMonsterToEncounter(this.encounter.id, fullMonsterToAdd);
             }
           }
-      // }
     })
   }
 
