@@ -60,7 +60,7 @@ export class EncounterEditorComponent implements OnInit {
       if (result) {
         console.log(`result was ${result}`)
         if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
-          this.encounterService.addMemberToEncounter(this.encounter.id, result);
+          this.encounterService.addMemberToEncounter(this.encounter.id, parseInt(result, 10));
         }
       }
     })
