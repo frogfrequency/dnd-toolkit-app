@@ -32,5 +32,4 @@ export class AddMonsterDialogComponent implements OnInit {
   //     this.currentlyFavoritedMonster = this.favoritedMonsters.find(element => element.slug === slug)
   //   // }
   // }
-
 }
