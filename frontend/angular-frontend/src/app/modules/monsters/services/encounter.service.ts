@@ -78,16 +78,24 @@ export class EncounterService {
 
   // NOT FINISHED...
   addMonsterToEncounter(encounterId: number, monster: IMonster) {
-    let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
-    this.encounters[encounterIdx].monsters.push(
-      {
-        slug: monster.slug,
-        name: monster.name,
-        quantity: 1,
-        rating: monster.challenge_rating
-      }
-    )
-
+    if (typeof(encounterId) == "string") {
+      encounterId = parseInt(encounterId);
+    }
+    if (encounterId) { // catching the case when the dialog is closed without selection.. it then sends undefined as encounterId which is caught here in this if block
+      
+      let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
+      // console.log(`addMonsterToEncounter called with encounterId, monster ${encounterId}, ${monster}`)
+      console.log(`HERERE`)
+      console.log(`${encounterIdx}`)
+      this.encounters[encounterIdx].monsters.push(
+        {
+          slug: monster.slug,
+          name: monster.name,
+          quantity: 1,
+          rating: monster.challenge_rating
+        }
+      )
+    }
   }
 
   adjustMonsterQuantity(encounterId: number, slug: string, operation: string) {

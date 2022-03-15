@@ -1,0 +1,36 @@
+<h3 mat-dialog-title>Select the encounter to which you want to add {{data.monsterName}}</h3>
+
+<mat-dialog-content>
+
+        
+        <mat-form-field appearance="fill" class="form-input-field">
+            <mat-label>Encounter</mat-label>
+            <mat-select #encounterSelect>
+
+                <!-- using a pipe here in the *ngFor because: -->
+                <!-- A: no assignments allowed in bindings... therefore no encounter.monsters.find(...) in the [disabled] binding-->
+                <!-- B: a normal function to checkt it and return a boolean would be called several times because of the way angular -->
+                <!-- renders the DOM.. performance not really an issue but it is not optimal if the check-function gets called too many times -->
+                <!-- pipe comes to the rescue... the pipe-function is only called once for every encounter which is great! -->
+                <mat-option *ngFor="let encounter of encounters" [disabled]="encounter | alreadyInEncounter: data.monsterName" [value]="encounter.id">
+                    {{encounter.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+
+    <button mat-button mat-dialog-close
+        disabled="{{!encounterSelect.value}}"
+        mat-dialog-close="{{encounterSelect.value}}">
+        ADD TO THIS ENCOUNTER
+    </button>
+
+    <button mat-button mat-dialog-close>
+        RETURN
+    </button>
+
+</mat-dialog-actions>

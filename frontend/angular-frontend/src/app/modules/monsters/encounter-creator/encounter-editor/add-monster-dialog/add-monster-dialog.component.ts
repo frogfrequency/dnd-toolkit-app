@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { INameSearchParams } from 'src/app/interfaces/INameSearchParams';
-import { EncounterService } from '../../../services/encounter.service';
 import { FavoritesService } from '../../../services/favorites.service';
 import { MonsterService } from '../../../services/monster.service';
 
@@ -32,7 +30,6 @@ export class AddMonsterDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private favoritesService: FavoritesService,
-    private encounterService: EncounterService,
     private monsterService: MonsterService,
   ) { }
 
