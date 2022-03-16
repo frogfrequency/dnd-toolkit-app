@@ -17,7 +17,7 @@
             <div class="matching-search-entries-box">
                 <mat-selection-list [multiple]="false" *ngFor="let entry of matchingSearchEntries.slice(0, 7);"
                     role="list">
-                    <mat-list-option [disabled]="monsterNamesAlreadyInEncounter.includes(entry)" role="listitem"><a (click)="setClickedSearchEntry(entry)">{{entry}}</a>
+                    <mat-list-option [disabled]="monsterNamesAlreadyInEncounter.includes(entry[0])" role="listitem"><a (click)="setClickedSearchEntry(entry[0])">{{entry[1]}} - {{entry[0]}}</a>
                     </mat-list-option>
                 </mat-selection-list>
 
