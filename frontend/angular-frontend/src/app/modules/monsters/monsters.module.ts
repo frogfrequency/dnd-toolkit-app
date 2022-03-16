@@ -34,6 +34,8 @@ import { EncounterEditorComponent } from './encounter-creator/encounter-editor/e
 import { AddEncounterPopupComponent } from './encounter-creator/add-encounter-popup/add-encounter-popup.component';
 import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/add-member-dialog/add-member-dialog.component';
 import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/add-monster-dialog/add-monster-dialog.component';
+import { AddThisMonsterToEncounterDialogComponent } from './encounter-creator/add-this-monster-to-encounter-dialog/add-this-monster-to-encounter-dialog.component';
+import { AlreadyInEncounterPipe } from './encounter-creator/add-this-monster-to-encounter-dialog/already-in-encounter.pipe';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/
     AddEncounterPopupComponent,
     AddMemberDialogComponent,
     AddMonsterDialogComponent,
+    AddThisMonsterToEncounterDialogComponent,
+    AlreadyInEncounterPipe,
   ],
   entryComponents: [
     AddMemberDialogComponent

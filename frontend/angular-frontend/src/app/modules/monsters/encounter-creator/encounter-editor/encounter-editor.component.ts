@@ -37,7 +37,7 @@ export class EncounterEditorComponent implements OnInit {
       this.allMonsters = monsters;
     })
 
-    this.openAddMonsterDialog(); // TESTING PURPOSES
+    // this.openAddMonsterDialog(); // TESTING PURPOSES
   }
 
   updateMemberLevelSelectOptions(): void {

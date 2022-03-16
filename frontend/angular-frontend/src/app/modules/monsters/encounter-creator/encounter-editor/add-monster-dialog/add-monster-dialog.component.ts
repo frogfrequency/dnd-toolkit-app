@@ -1,8 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { INameSearchParams } from 'src/app/interfaces/INameSearchParams';
-import { EncounterService } from '../../../services/encounter.service';
 import { FavoritesService } from '../../../services/favorites.service';
 import { MonsterService } from '../../../services/monster.service';
 
@@ -14,25 +12,24 @@ import { MonsterService } from '../../../services/monster.service';
 export class AddMonsterDialogComponent implements OnInit {
 
   // GENERAL
-  
+
   allMonsters: IMonster[] = [];
   monsterNamesAlreadyInEncounter: string[] = [];
-  
+
   // ADD FROM FAVORITES
-  
+
   favoritedMonsters: IMonster[] = [];
 
 
   // ADD FROM NAME SEARCH
   allMonsterNames: string[] = [];
-  clickedSearchEntry: string = '';
   matchingSearchEntries: string[] = [];
+  clickedSearchEntry: string = '';
   currentSearchStringValidity: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private favoritesService: FavoritesService,
-    private encounterService: EncounterService,
     private monsterService: MonsterService,
   ) { }
 
@@ -56,13 +53,13 @@ export class AddMonsterDialogComponent implements OnInit {
   }
 
   inputChanged(newString: string): void {
-  
+
     if (2 <= newString.length) {
       console.log(`input changed`)
       this.setNameSearchStringValidity(newString);
       let matching: string[] = [];
       newString = newString.toLowerCase();
-      this.allMonsterNames.forEach( element => {
+      this.allMonsterNames.forEach(element => {
         if (element.toLowerCase().includes(newString)) {
           matching.push(element);
         }
@@ -81,12 +78,21 @@ export class AddMonsterDialogComponent implements OnInit {
   }
 
   setNameSearchStringValidity(currentValue: string): void {
-    if (!this.data.encounter.monsters.find( (element:any) => element.name === currentValue) && this.allMonsterNames.find(element => element === currentValue)) {
+    if (!this.data.encounter.monsters.find((element: any) => element.name === currentValue) && this.allMonsterNames.find(element => element === currentValue)) {
       this.currentSearchStringValidity = true;
     } else {
       this.currentSearchStringValidity = false;
     }
   }
+
+  // giveMonsterChallengeRating(name: string): string {
+  //   let output = this.allMonsters.find(element => element.name === name);
+  //   if (output) {
+  //     return output.challenge_rating
+  //   } else {
+  //     return ""
+  //   }
+  // }
 
   // setSelectedMonster(slug: string): void {
   //   // if (this.favoritedMonsters) {
