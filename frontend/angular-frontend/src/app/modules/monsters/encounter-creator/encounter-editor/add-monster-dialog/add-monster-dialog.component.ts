@@ -22,8 +22,8 @@ export class AddMonsterDialogComponent implements OnInit {
 
 
   // ADD FROM NAME SEARCH
-  allMonsterNames: string[] = [];
-  matchingSearchEntries: string[] = [];
+  allMonsterNameCrPair: string[][] = [];
+  matchingSearchEntries: string[][] = [];
   clickedSearchEntry: string = '';
   currentSearchStringValidity: boolean = false;
 
@@ -44,9 +44,9 @@ export class AddMonsterDialogComponent implements OnInit {
 
     this.monsterService.allMonstersSubject.subscribe(allMonsters => {
       this.allMonsters = allMonsters;
-      this.allMonsterNames = [];
+      this.allMonsterNameCrPair = [];
       this.allMonsters.forEach(monster => {
-        this.allMonsterNames.push(monster.name);
+        this.allMonsterNameCrPair.push([monster.name, monster.challenge_rating]);
       });
     });
 
@@ -57,14 +57,14 @@ export class AddMonsterDialogComponent implements OnInit {
     if (2 <= newString.length) {
       console.log(`input changed`)
       this.setNameSearchStringValidity(newString);
-      let matching: string[] = [];
+      let matching: string[][] = [];
       newString = newString.toLowerCase();
-      this.allMonsterNames.forEach(element => {
-        if (element.toLowerCase().includes(newString)) {
+      this.allMonsterNameCrPair.forEach(element => {
+        if (element[0].toLowerCase().includes(newString)) {
           matching.push(element);
         }
       });
-      this.matchingSearchEntries = [...matching]
+      this.matchingSearchEntries = [...matching] // JSON THINGY DO IT HERE
     } else {
       this.matchingSearchEntries = [];
       this.setNameSearchStringValidity(newString);
@@ -78,7 +78,7 @@ export class AddMonsterDialogComponent implements OnInit {
   }
 
   setNameSearchStringValidity(currentValue: string): void {
-    if (!this.data.encounter.monsters.find((element: any) => element.name === currentValue) && this.allMonsterNames.find(element => element === currentValue)) {
+    if (!this.data.encounter.monsters.find((element: any) => element.name === currentValue) && this.allMonsterNameCrPair.find(element => element[0] === currentValue)) {
       this.currentSearchStringValidity = true;
     } else {
       this.currentSearchStringValidity = false;
