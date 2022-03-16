@@ -12,6 +12,7 @@
     
     
     <div>
+        <button mat-raised-button (click)="openAddThisMonsterToEncounterDialog()">ADD TO ENCOUNTER</button>
         <button mat-raised-button [routerLink]="monstersDetailsLink">DETAILS</button>
         <button mat-raised-button *ngIf="!monsterIsFavorited" (click)="onFavoriteButtonClick()">FAVORITE</button>
         <button mat-raised-button *ngIf="monsterIsFavorited" (click)="onUnfavoriteButtonClick()">UNFAVORITE</button>
