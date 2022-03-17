@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>New Encounter:</h2>
+
+<mat-dialog-content>
+    <h4>Enter Encounter Name</h4>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput #newNameInput>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close="{{newNameInput.value}}">ADD</button>
+    <button mat-button mat-dialog-close>RETURN</button>
+</mat-dialog-actions>
