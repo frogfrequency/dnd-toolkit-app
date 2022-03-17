@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { IEncounter } from 'src/app/interfaces/IEncounter';
 import { EncounterService } from '../services/encounter.service';
+import { AddNewEncounterDialogComponent } from './add-new-encounter-dialog/add-new-encounter-dialog.component';
 
 @Component({
   selector: 'app-encounter-creator',
@@ -15,7 +17,7 @@ export class EncounterCreatorComponent implements OnInit {
 
   addNewEncounterPopupDisplay = false;
 
-  constructor(private encounterService: EncounterService) { }
+  constructor(private encounterService: EncounterService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.encounterService.encountersSubject.subscribe(encounters => {
@@ -35,12 +37,13 @@ export class EncounterCreatorComponent implements OnInit {
     this.selectedEncounterID = 0;
   }
 
-  closeAddNewEncounterPopup():void {
-    this.addNewEncounterPopupDisplay = false;
-  }
-
-  openAddNewEncounterPopup():void {
-    this.addNewEncounterPopupDisplay = true;
+  openAddNewEncounterDialog(): void {
+    let dialogRef = this.dialog.open(AddNewEncounterDialogComponent, {data: {name: "mäsib"}});
+    dialogRef.afterClosed().subscribe( name => {
+      if (name) {
+        this.encounterService.addNewEncounter(name);
+      }
+    })
   }
 
 }

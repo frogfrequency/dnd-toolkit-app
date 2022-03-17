@@ -3,6 +3,7 @@
 .encounter-editor-container {
     max-width: 1200px;
     min-width: 960px;
+    margin: 16px;
     /* background-color: red; */
 }
 

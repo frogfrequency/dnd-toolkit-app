@@ -3,3 +3,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.mat-raised-button {
+    margin: 16px;
+}
