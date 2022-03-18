@@ -21,7 +21,6 @@ export class AddMemberDialogComponent implements OnInit {
   setMemberLevelsAlreadyInEncounterFromDialogData(): void {
     this.data.encounter.partyMembers.forEach( (member:any) => {
       this.memberLevelsAlreadyInEncounter.push(member.level);
-      console.log(member.level)
     })
 
   }

@@ -58,7 +58,6 @@ export class EncounterEditorComponent implements OnInit {
     let dialogRef = this.dialog.open(AddMemberDialogComponent, {data: {encounter: this.encounter}});
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(`result was ${result}`)
         if (this.encounter) { // doing this because encounter could be undefined which then could not provide the encounterid to the function
           this.encounterService.addMemberToEncounter(this.encounter.id, parseInt(result, 10));
         }

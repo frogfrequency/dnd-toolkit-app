@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { IEncounter } from 'src/app/interfaces/IEncounter';
 import { IMonster } from 'src/app/interfaces/IMonster';
+import { giveEncounterDifficultyCategory, giveMonsterDifficultyMultiplier, giveMonsterXp, giveMonsterXpAdjusted, giveXpThresholds } from '../assets/encounterDifficultyCalculation';
 import { mockEncounters } from '../mockEncounters';
 
 @Injectable({
@@ -19,10 +20,9 @@ export class EncounterService {
     this.encountersSubject = new BehaviorSubject(this.encounters);
   }
 
+  // GENERAL ENCOUNTER METHODS
+
   addNewEncounter(encounterName: string): void {
-    // if (this.encounters.some(encounter => encounter.name === encounterName)) {
-    //   alert("asdf")
-    // } else { // if its not already included in favorites
     this.encounters.push({
       name: encounterName,
       id: this.genId(this.encounters),
@@ -31,7 +31,7 @@ export class EncounterService {
       monsters: []
     });
 
-    this.encountersSubject.next(this.encounters);
+    // this.encountersSubject.next(this.encounters);
 
     // }
   }
@@ -45,6 +45,24 @@ export class EncounterService {
     this.encountersSubject.next(this.encounters);
   }
 
+  refreshEncounterStats(id: number): void {
+    console.log(`refreshing encounter with ID: ${id}`);
+    let copy = JSON.parse(JSON.stringify(this.encounters.find((encounter: any) => encounter.id === id)));
+    // let copy = this.encounters.find((encounter: any) => encounter.id === id);
+
+    if (copy) {
+      copy.monsterXp = giveMonsterXp(copy.monsters);
+      copy.monsterDifficultyMultiplier = giveMonsterDifficultyMultiplier(copy.monsters.length, copy.partyMembers.length);
+      copy.monsterXpAdjusted = giveMonsterXpAdjusted();
+      copy.xpThresholds = giveXpThresholds(copy.partyMembers);
+      copy.encounterDifficultyCategory = giveEncounterDifficultyCategory();
+    }
+    this.encountersSubject.next(this.encounters);
+  }
+
+
+  // MEMBER METHODS
+
   addMemberToEncounter(encounterId: number, level: number) {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
 
@@ -54,6 +72,7 @@ export class EncounterService {
         quantity: 1
       }
     )
+    this.refreshEncounterStats(encounterId);
     this.encountersSubject.next(this.encounters);
   }
 
@@ -67,22 +86,26 @@ export class EncounterService {
         this.encounters[encounterIdx].partyMembers[memberIdx].quantity = this.encounters[encounterIdx].partyMembers[memberIdx].quantity - 1;
       }
     }
+    this.refreshEncounterStats(encounterId);
+    // maybe .next needed here and everywhere else? dunno
   }
 
   deleteMember(encounterId: number, level: number): void {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
     this.encounters[encounterIdx].partyMembers = this.encounters[encounterIdx].partyMembers.filter(member => member.level != level);
+    this.refreshEncounterStats(encounterId);
     this.encountersSubject.next(this.encounters);
   }
 
+  // MONSTER METHODS
 
-  // NOT FINISHED...
+
   addMonsterToEncounter(encounterId: number, monster: IMonster) {
-    if (typeof(encounterId) == "string") {
+    if (typeof (encounterId) == "string") {
       encounterId = parseInt(encounterId);
     }
     if (encounterId) { // catching the case when the dialog is closed without selection.. it then sends undefined as encounterId which is caught here in this if block
-      
+
       let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
       // console.log(`addMonsterToEncounter called with encounterId, monster ${encounterId}, ${monster}`)
       console.log(`HERERE`)
@@ -114,5 +137,6 @@ export class EncounterService {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
     this.encounters[encounterIdx].monsters = this.encounters[encounterIdx].monsters.filter(monster => monster.slug != slug);
   }
+
 
 }
