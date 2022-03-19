@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { IEncounter } from 'src/app/interfaces/IEncounter';
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { giveEncounterDifficultyCategory, giveMonsterDifficultyMultiplier, giveMonsterXp, giveMonsterXpAdjusted, giveXpThresholds } from '../assets/encounterDifficultyCalculation';
+import { giveEncounterDifficultyCategory, giveMonsterDifficultyMultiplier, giveMonsterXp, giveXpThresholds } from '../assets/encounterDifficultyCalculation';
 import { mockEncounters } from '../mockEncounters';
 
 @Injectable({
@@ -53,9 +53,9 @@ export class EncounterService {
     if (copy) {
       copy.monsterXp = giveMonsterXp(copy.monsters);
       copy.monsterDifficultyMultiplier = giveMonsterDifficultyMultiplier(copy.monsters.length, copy.partyMembers.length);
-      copy.monsterXpAdjusted = giveMonsterXpAdjusted();
+      copy.monsterXpAdjusted = copy.monsterXp * copy.monsterDifficultyMultiplier;
       copy.xpThresholds = giveXpThresholds(copy.partyMembers);
-      copy.encounterDifficultyCategory = giveEncounterDifficultyCategory();
+      copy.encounterDifficultyCategory = giveEncounterDifficultyCategory(copy.monsterXpAdjusted, copy.xpThresholds);
     }
     this.encountersSubject.next(this.encounters);
   }

@@ -1,4 +1,5 @@
 import { IEncounter, IEncounterMember, IEncounterMonster } from "src/app/interfaces/IEncounter";
+import { experienceTable } from "./challengeRatingXPTable";
 import { xpThresholdByCharacterLevelTable } from "./xpThresholdsByCharacterLevelTable";
 
 
@@ -7,12 +8,10 @@ export function giveMonsterXp(monsters: IEncounterMonster[]): number {
     let xpSum = 0;
     monsters.forEach(monster => {
         let monsterRating = monster.rating;
+        xpSum += experienceTable[monsterRating] * monster.quantity;
     })
-
-
-    return 0
+    return xpSum
 }
-
 
 export function giveMonsterDifficultyMultiplier(monsterQuantity: number, adventurerQuantity: number): number {
 
@@ -69,12 +68,6 @@ export function giveMonsterDifficultyMultiplier(monsterQuantity: number, adventu
     }
 }
 
-export function giveMonsterXpAdjusted(): number {
-
-    return 0
-}
-
-
 export function giveXpThresholds(partyMembers: IEncounterMember[]): number[] {
     let thresholds: number[] = [0,0,0,0];
     partyMembers.forEach(adventurer => {
@@ -86,9 +79,16 @@ export function giveXpThresholds(partyMembers: IEncounterMember[]): number[] {
     return thresholds
 }
 
-export function giveEncounterDifficultyCategory(): string {
-
-    return "DEEDLY"
+export function giveEncounterDifficultyCategory(adjustedMonsterXp: number, xpThresholds: number[]): string {
+    if (adjustedMonsterXp < xpThresholds[1]){
+        return "Easy"
+    } else if (adjustedMonsterXp < xpThresholds[2]) {
+        return "Medium"
+    } else if (adjustedMonsterXp < xpThresholds[3]) {
+        return "Hard"
+    } else {
+        return "Deadly"
+    }
 }
 
 

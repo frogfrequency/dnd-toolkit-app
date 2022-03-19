@@ -31,7 +31,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { EncounterCreatorComponent } from './encounter-creator/encounter-creator.component';
 import { EncounterCardComponent } from './encounter-creator/encounter-card/encounter-card.component';
 import { EncounterEditorComponent } from './encounter-creator/encounter-editor/encounter-editor.component';
-import { AddEncounterPopupComponent } from './encounter-creator/add-encounter-popup/add-encounter-popup.component';
 import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/add-member-dialog/add-member-dialog.component';
 import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/add-monster-dialog/add-monster-dialog.component';
 import { AddThisMonsterToEncounterDialogComponent } from './encounter-creator/add-this-monster-to-encounter-dialog/add-this-monster-to-encounter-dialog.component';
@@ -55,7 +54,6 @@ import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-enco
     EncounterCreatorComponent,
     EncounterCardComponent,
     EncounterEditorComponent,
-    AddEncounterPopupComponent,
     AddMemberDialogComponent,
     AddMonsterDialogComponent,
     AddThisMonsterToEncounterDialogComponent,

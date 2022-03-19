@@ -21,3 +21,10 @@
     object-fit: cover;
     border-radius: 4px;
 }
+
+.difficulty-indicator {
+    background-color: orange !important;
+    color: orange !important;
+    width: 1000px;
+    /* NOTHING WORKS */
+}
