@@ -4,11 +4,13 @@ export interface IEncounter {
     imageURL: string,
     partyMembers: IEncounterMember[], 
     monsters: IEncounterMonster[],
-    monsterXp?: number,
-    monsterDifficultyMultiplier?: number,
-    monsterXpAdjusted?: number,
-    xpThresholds?: number[],
-    encounterDifficultyCategory?: string,
+    monsterXp: number,
+    monsterDifficultyMultiplier: number,
+    monsterXpAdjusted: number,
+    xpThresholds: number[],
+    percentage: number,
+    encounterDifficultyCategory: string,
+    difficultyClassColorClass: string
 }
 
 export interface IEncounterMember {

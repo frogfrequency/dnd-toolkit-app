@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* MAT SPINNERS COLORS */
+/* why is this here? because angular material doesnt let you apply custom colors to its spinners very easily:( */
+
+.red-spinner circle{
+    stroke: red;
+}
+
+.orangered-spinner circle{
+    stroke: orangered;
+}
+
+.orange-spinner circle{
+    stroke: orange;
+}
+
+.green-spinner circle{
+    stroke: green;
+}
+
+.white-spinner circle{
+    stroke: rgb(206, 217, 224);
+}
+
+

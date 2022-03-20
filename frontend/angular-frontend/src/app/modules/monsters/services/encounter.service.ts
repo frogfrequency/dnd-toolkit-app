@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { IEncounter } from 'src/app/interfaces/IEncounter';
 import { IMonster } from 'src/app/interfaces/IMonster';
-import { giveEncounterDifficultyCategory, giveMonsterDifficultyMultiplier, giveMonsterXp, giveXpThresholds } from '../assets/encounterDifficultyCalculation';
+import { giveDifficultyClassColorClass, giveEncounterDifficultyCategory, giveMonsterDifficultyMultiplier, giveMonsterXp, givePercentage, giveXpThresholds } from '../assets/encounterDifficultyCalculation';
 import { mockEncounters } from '../mockEncounters';
 
 @Injectable({
@@ -28,7 +28,14 @@ export class EncounterService {
       id: this.genId(this.encounters),
       imageURL: '',
       partyMembers: [],
-      monsters: []
+      monsters: [],
+      monsterXp: 0,
+      monsterDifficultyMultiplier: 0,
+      monsterXpAdjusted: 0,
+      xpThresholds: [],
+      percentage: 0,
+      encounterDifficultyCategory: "",
+      difficultyClassColorClass: ""
     });
 
     // this.encountersSubject.next(this.encounters);
@@ -52,10 +59,14 @@ export class EncounterService {
 
     if (copy) {
       copy.monsterXp = giveMonsterXp(copy.monsters);
-      copy.monsterDifficultyMultiplier = giveMonsterDifficultyMultiplier(copy.monsters.length, copy.partyMembers.length);
+      copy.monsterDifficultyMultiplier = giveMonsterDifficultyMultiplier(copy.monsters, copy.partyMembers);
       copy.monsterXpAdjusted = copy.monsterXp * copy.monsterDifficultyMultiplier;
       copy.xpThresholds = giveXpThresholds(copy.partyMembers);
+      copy.percentage = givePercentage(copy.monsterXpAdjusted, copy.xpThresholds);
       copy.encounterDifficultyCategory = giveEncounterDifficultyCategory(copy.monsterXpAdjusted, copy.xpThresholds);
+      copy.difficultyClassColorClass = giveDifficultyClassColorClass(copy.encounterDifficultyCategory);
+      let encounterIdxInArr = this.encounters.findIndex(element => element.id === id);
+      this.encounters[encounterIdxInArr] = copy;
     }
     this.encountersSubject.next(this.encounters);
   }
@@ -118,6 +129,7 @@ export class EncounterService {
           rating: monster.challenge_rating
         }
       )
+      this.refreshEncounterStats(encounterId);
     }
   }
 
@@ -131,11 +143,13 @@ export class EncounterService {
         this.encounters[encounterIdx].monsters[monsterIdx].quantity = this.encounters[encounterIdx].monsters[monsterIdx].quantity - 1
       }
     }
+    this.refreshEncounterStats(encounterId);
   }
 
   deleteMonster(encounterId: number, slug: string) {
     let encounterIdx = this.encounters.findIndex(encounter => encounter.id === encounterId);
     this.encounters[encounterIdx].monsters = this.encounters[encounterIdx].monsters.filter(monster => monster.slug != slug);
+    this.refreshEncounterStats(encounterId);
   }
 
 

@@ -1,6 +1,10 @@
 .encounter-card {
-    width: 240px;
+    width: 268px;
     margin: 16px;
+}
+
+.encounter-name {
+    margin-bottom: 12px;
 }
 
 .mat-card-content {
@@ -22,9 +26,19 @@
     border-radius: 4px;
 }
 
-.difficulty-indicator {
-    background-color: orange !important;
-    color: orange !important;
-    width: 1000px;
-    /* NOTHING WORKS */
+.mat-card-actions {
+    padding: 0px;
+}
+
+.difficulty-circle {
+    top: 28px;
+    position: relative;
+}
+
+.difficulty-text {
+    /* background-color: black; */
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

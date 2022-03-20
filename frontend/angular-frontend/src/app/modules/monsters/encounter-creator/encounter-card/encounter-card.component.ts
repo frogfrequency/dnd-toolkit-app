@@ -26,4 +26,6 @@ export class EncounterCardComponent implements OnInit {
     this.deleteClick.emit();
   }
   
+
+
 }

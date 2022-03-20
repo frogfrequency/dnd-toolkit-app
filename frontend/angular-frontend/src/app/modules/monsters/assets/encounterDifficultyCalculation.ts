@@ -13,10 +13,14 @@ export function giveMonsterXp(monsters: IEncounterMonster[]): number {
     return xpSum
 }
 
-export function giveMonsterDifficultyMultiplier(monsterQuantity: number, adventurerQuantity: number): number {
+export function giveMonsterDifficultyMultiplier(monsters: IEncounterMonster[], partyMembers: IEncounterMember[] ): number {
+    let monsterQuantity: number = 0;
+    let partyMemberQuantity: number = 0;
+
+    monsters.forEach(monster => monsterQuantity += monster.quantity);
+    partyMembers.forEach(member => partyMemberQuantity += member.quantity);
 
     let difficultyClass: number;
-
     if (monsterQuantity <= 1) {
         difficultyClass = 1;
     } else if (monsterQuantity === 2) {
@@ -31,38 +35,47 @@ export function giveMonsterDifficultyMultiplier(monsterQuantity: number, adventu
         difficultyClass = 6;
     }
 
-    if (adventurerQuantity < 3) {
+    if (partyMemberQuantity < 3) {
         difficultyClass += 1;
-    } else if (5 < adventurerQuantity) {
+    } else if (5 < partyMemberQuantity) {
         difficultyClass -= 1;
     }
 
     switch (difficultyClass) {
         case 0:
-            return 0.5
+            console.log(`returning 0.5`)
+            return 0.5;
             break;
         case 1:
+            console.log(`returning 1`)
             return 1;
             break;
         case 2:
+            console.log(`returning 1.5`)
             return 1.5;
             break;
         case 3:
+            console.log(`returning 2`)
             return 2;
             break;
         case 4:
+            console.log(`returning 2.5`)
             return 2.5;
             break;
         case 5:
+            console.log(`returning 3`)
             return 3;
             break;
         case 6:
+            console.log(`returning 4`)
             return 4;
             break;
         case 7:
+            console.log(`returning 5`)
             return 5;
             break;
         default:
+            console.log(`returning 100`)
             return 100;
             break;
     }
@@ -79,8 +92,14 @@ export function giveXpThresholds(partyMembers: IEncounterMember[]): number[] {
     return thresholds
 }
 
+export function givePercentage(adjustedMonsterXp: number, xpThresholds: number[]): number {
+    return Math.floor(100/xpThresholds[3]*adjustedMonsterXp);
+}
+
 export function giveEncounterDifficultyCategory(adjustedMonsterXp: number, xpThresholds: number[]): string {
-    if (adjustedMonsterXp < xpThresholds[1]){
+    if (adjustedMonsterXp < xpThresholds[0]) {
+        return "Trivial"
+    } else if (adjustedMonsterXp < xpThresholds[1]){
         return "Easy"
     } else if (adjustedMonsterXp < xpThresholds[2]) {
         return "Medium"
@@ -89,6 +108,22 @@ export function giveEncounterDifficultyCategory(adjustedMonsterXp: number, xpThr
     } else {
         return "Deadly"
     }
+}
+
+export function giveDifficultyClassColorClass(encounterDifficultyCategory: string): string {
+    switch(encounterDifficultyCategory) {
+        case "Trivial":
+            return "white-spinner"
+        case "Easy":
+            return "green-spinner"
+        case "Medium":
+            return "orange-spinner"
+        case "Hard":
+            return "orangered-spinner"
+        case "Deadly":
+            return "red-spinner"
+    }
+    return ""
 }
 
 

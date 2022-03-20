@@ -19,7 +19,7 @@ export class EncounterEditorComponent implements OnInit {
   @Output() backToOverviewClick = new EventEmitter();
 
   encounters: IEncounter[] = [];
-  encounter!: IEncounter | undefined;
+  encounter!: IEncounter;
 
   memberLevelSelectOptions: number[] = [];
 
@@ -30,7 +30,10 @@ export class EncounterEditorComponent implements OnInit {
   ngOnInit(): void {
     this.encounterService.encountersSubject.subscribe(encounters => {
       this.encounters = encounters;
-      this.encounter = encounters.find(encounter => encounter.id === this.encounterId);
+      let theEncounter = encounters.find(encounter => encounter.id === this.encounterId);
+      if (theEncounter) {
+        this.encounter = theEncounter;
+      }
       this.updateMemberLevelSelectOptions();
     });
     this.monsterService.allMonstersSubject.subscribe(monsters => {
