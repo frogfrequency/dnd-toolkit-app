@@ -36,6 +36,8 @@ import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/
 import { AddThisMonsterToEncounterDialogComponent } from './encounter-creator/add-this-monster-to-encounter-dialog/add-this-monster-to-encounter-dialog.component';
 import { AlreadyInEncounterPipe } from './encounter-creator/add-this-monster-to-encounter-dialog/already-in-encounter.pipe';
 import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-encounter-dialog/add-new-encounter-dialog.component';
+import { DifficultyBarComponent } from './encounter-creator/encounter-editor/difficulty-bar/difficulty-bar.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -59,6 +61,7 @@ import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-enco
     AddThisMonsterToEncounterDialogComponent,
     AlreadyInEncounterPipe,
     AddNewEncounterDialogComponent,
+    DifficultyBarComponent,
   ],
   entryComponents: [
     AddMemberDialogComponent
@@ -77,7 +80,8 @@ import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-enco
     MatButtonToggleModule,
     MatDialogModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
   ],
   exports: [
     MonstersComponent,
