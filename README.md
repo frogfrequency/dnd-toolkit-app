@@ -26,11 +26,16 @@ $ winpty docker exec -it dnd-toolkit-postgres bash
 
 # exit SSH session
 $ exit
-
-
-
 ```
 
+```javascript
+// function
+function doIt() {
+    let a = 2;
+    console.log(a);
+    return a;
+}
+```
 
 https://gist.github.com/bradtraversy/89fad226dc058a41b596d586022a9bd3
 
