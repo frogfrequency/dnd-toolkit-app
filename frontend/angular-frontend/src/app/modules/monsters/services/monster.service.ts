@@ -38,19 +38,19 @@ export class MonsterService {
 
 		// EITHER THIS
 
-		// console.log(`getAllMonsters in monster.service called`)
-		// let Url = this.backendUrl + "/allMonsters"
-		// let allTheMonsters = this.http.get<IMonster[]>(Url);
-		// allTheMonsters.subscribe(monsters => {
-		// 	this.allMonsters = monsters;
-		// 	console.log(`length of this.allMonsters: ${this.allMonsters.length}`)
-		// 	this.allMonstersSubject.next(this.allMonsters);
-		// })
+		console.log(`getAllMonsters in monster.service called`)
+		let Url = this.backendUrl + "/allMonsters"
+		let allTheMonsters = this.http.get<IMonster[]>(Url);
+		allTheMonsters.subscribe(monsters => {
+			this.allMonsters = monsters;
+			console.log(`length of this.allMonsters: ${this.allMonsters.length}`)
+			this.allMonstersSubject.next(this.allMonsters);
+		})
 
 		// OR THIS NEEDS TO BE ACTIVE
 
-		this.allMonsters = mockMonsters;
-		this.allMonstersSubject.next(this.allMonsters);
+		// this.allMonsters = mockMonsters;
+		// this.allMonstersSubject.next(this.allMonsters);
 
 	}
 }
