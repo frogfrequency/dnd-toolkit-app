@@ -31,12 +31,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { EncounterCreatorComponent } from './encounter-creator/encounter-creator.component';
 import { EncounterCardComponent } from './encounter-creator/encounter-card/encounter-card.component';
 import { EncounterEditorComponent } from './encounter-creator/encounter-editor/encounter-editor.component';
-import { AddEncounterPopupComponent } from './encounter-creator/add-encounter-popup/add-encounter-popup.component';
 import { AddMemberDialogComponent } from './encounter-creator/encounter-editor/add-member-dialog/add-member-dialog.component';
 import { AddMonsterDialogComponent } from './encounter-creator/encounter-editor/add-monster-dialog/add-monster-dialog.component';
 import { AddThisMonsterToEncounterDialogComponent } from './encounter-creator/add-this-monster-to-encounter-dialog/add-this-monster-to-encounter-dialog.component';
 import { AlreadyInEncounterPipe } from './encounter-creator/add-this-monster-to-encounter-dialog/already-in-encounter.pipe';
 import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-encounter-dialog/add-new-encounter-dialog.component';
+import { DifficultyBarComponent } from './encounter-creator/encounter-editor/difficulty-bar/difficulty-bar.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -55,12 +56,12 @@ import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-enco
     EncounterCreatorComponent,
     EncounterCardComponent,
     EncounterEditorComponent,
-    AddEncounterPopupComponent,
     AddMemberDialogComponent,
     AddMonsterDialogComponent,
     AddThisMonsterToEncounterDialogComponent,
     AlreadyInEncounterPipe,
     AddNewEncounterDialogComponent,
+    DifficultyBarComponent,
   ],
   entryComponents: [
     AddMemberDialogComponent
@@ -79,7 +80,8 @@ import { AddNewEncounterDialogComponent } from './encounter-creator/add-new-enco
     MatButtonToggleModule,
     MatDialogModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule
   ],
   exports: [
     MonstersComponent,

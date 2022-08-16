@@ -1,6 +1,10 @@
 .encounter-card {
-    width: 240px;
+    width: 268px;
     margin: 16px;
+}
+
+.encounter-name {
+    margin-bottom: 12px;
 }
 
 .mat-card-content {
@@ -20,4 +24,21 @@
 .mat-card-lg-image {
     object-fit: cover;
     border-radius: 4px;
+}
+
+.mat-card-actions {
+    padding: 0px;
+}
+
+.difficulty-circle {
+    top: 28px;
+    position: relative;
+}
+
+.difficulty-text {
+    /* background-color: black; */
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

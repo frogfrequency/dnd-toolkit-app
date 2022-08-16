@@ -2,7 +2,11 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { monsterRouter } from './routes/monsters';
 import { notesRouter } from './routes/notes';
+import dotenv from 'dotenv';
+import { playerCharactersRouter } from './routes/playerCharacters';
 
+// load environment variables from .env file
+dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -22,10 +26,10 @@ app.get(
     }
 );
 
-
 // routers
 app.use('/api/monsters', monsterRouter);
 app.use('/api/notes', notesRouter);
+app.use('/api/playerCharacters', playerCharactersRouter);
 
 
 try {

@@ -1,12 +1,19 @@
 <mat-card class="encounter-card">
-    <mat-card-title>{{encounter.name}}</mat-card-title>
+    <mat-card-title class="encounter-name">{{encounter.name}}</mat-card-title>
     <mat-card-title-group>
         <mat-card-title>
-            <div class="difficulty-bar-placeholder"></div>
-            <div>DEADLY</div>
+
+            <div class="difficulty-circle">
+                <mat-progress-spinner [value]="encounter.percentage"
+                    class="red-spinner {{encounter.difficultyClassColorClass}}"></mat-progress-spinner>
+                <div class="difficulty-text">{{encounter.encounterDifficultyCategory}}</div>
+            </div>
+
+
         </mat-card-title>
         <!-- <mat-card-subtitle>Extra large</mat-card-subtitle> -->
-        <img mat-card-lg-image src={{encounter.imageURL}} alt="image not found" onerror="this.onerror=null; this.src=`https:/\/thenerdd.files.wordpress.com/2019/11/wag3sij.jpg`">
+        <img mat-card-lg-image src={{encounter.imageURL}} alt="image not found"
+            onerror="this.onerror=null; this.src=`https:/\/thenerdd.files.wordpress.com/2019/11/wag3sij.jpg`">
     </mat-card-title-group>
 
     <mat-card-content>
@@ -16,6 +23,8 @@
     <mat-card-actions>
         <button mat-button (click)="handleEditClick()">EDIT</button>
         <button mat-button (click)="handleDeleteClick()">DELETE</button>
-      </mat-card-actions>
-      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="image not found" onerror="this.onerror=null; this.src=`https:/\/www.colorado.edu/center/west/sites/default/files/styles/small/public/people/no_image_available_0.png?itok=ZtiDdT5Z`"> -->
+    </mat-card-actions>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="image not found" onerror="this.onerror=null; this.src=`https:/\/www.colorado.edu/center/west/sites/default/files/styles/small/public/people/no_image_available_0.png?itok=ZtiDdT5Z`"> -->
+
+
 </mat-card>

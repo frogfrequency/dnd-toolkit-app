@@ -22,7 +22,7 @@ export class MonstersComponent implements OnInit {
     { selector: 'encounterCreator', label: 'Encounter Creator'}
   ];
 
-  activeMonsterPage: string = 'randomMonster';
+  activeMonsterPage: string = 'encounterCreator';
 
   allMonsters: IMonster[] = [];
 

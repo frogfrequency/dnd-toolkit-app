@@ -23,7 +23,14 @@ export let mockEncounters: IEncounter[] = [
                 rating: "1/8"
 
             }
-        ]
+        ],
+        monsterXp: 75,
+        monsterDifficultyMultiplier: 2,
+        monsterXpAdjusted: 150,
+        xpThresholds: [400,800,1200,1800],
+        percentage: 8,
+        encounterDifficultyCategory: 'Trivial',
+        difficultyClassColorClass: "white-spinner"
     },
     {
         name: 'Deep Caverns Entrance',
@@ -31,7 +38,7 @@ export let mockEncounters: IEncounter[] = [
         imageURL: 'https://explorednd.com/wp-content/uploads/2021/08/Skeleton-5e-Guide-950x650.png',
         partyMembers: [
             {
-                level: 2,
+                level: 7,
                 quantity: 5
             }
         ],
@@ -48,8 +55,15 @@ export let mockEncounters: IEncounter[] = [
                 quantity: 1,
                 rating: "5"
             },
+        ],
+        monsterXp: 2100,
+        monsterDifficultyMultiplier: 2.5,
+        monsterXpAdjusted: 5250,
+        xpThresholds: [1750,3750,5500,8500],
+        percentage: 61,
+        encounterDifficultyCategory: 'Medium',
+        difficultyClassColorClass: "orange-spinner"
 
-        ]
     },
     {
         name: 'Unholy Chamber',
@@ -75,6 +89,13 @@ export let mockEncounters: IEncounter[] = [
                 rating: "5"
             },
 
-        ]
+        ],
+        monsterXp: 15400,
+        monsterDifficultyMultiplier: 2,
+        monsterXpAdjusted: 30800,
+        xpThresholds: [250,500,750,1000],
+        percentage: 3080,
+        encounterDifficultyCategory: "Deadly",
+        difficultyClassColorClass: "red-spinner"
     }
 ];

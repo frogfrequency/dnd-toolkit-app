@@ -26,9 +26,10 @@ button {
 .party-members-view {
     width: 40%;
     max-width: 480px;
-    min-height: 600px;
+    /* min-height: 600px; */
     /* background-color: orange; */
     margin: 16px;
+    padding-bottom: 8px;
     border-radius: 4px;
     box-shadow: 2px 2px 5px -2px rgb(0, 0, 0);
 }
@@ -36,9 +37,10 @@ button {
 .monsters-view {
     width: 60%;
     max-width: 720px;
-    min-height: 600px;
+    /* min-height: 600px; */
     /* background-color: blue; */
     margin: 16px;
+    padding-bottom: 8px;
     border-radius: 4px;
     box-shadow: 2px 2px 5px -2px rgb(0, 0, 0);
 }
@@ -136,4 +138,21 @@ button {
     min-width: 40px;
     margin: 0px;
     transform:scale(0.7);
+}
+
+
+
+
+
+
+/* STATS WINDOW */
+
+.stats-view-container {
+    /* width: 60%;
+    max-width: 720px; */
+    /* background-color: cadetblue; */
+    margin: 8px 16px 16px 16px;
+    /* padding-bottom: 8px; */
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px -2px rgb(0, 0, 0);
 }

@@ -13,7 +13,7 @@ export class EncounterCreatorComponent implements OnInit {
 
   encounters: IEncounter[] = [];
 
-  selectedEncounterID: number = 0; // 0 -> false -> no encounter selected
+  selectedEncounterID: number = 11; // 0 -> false -> no encounter selected
 
   addNewEncounterPopupDisplay = false;
 
